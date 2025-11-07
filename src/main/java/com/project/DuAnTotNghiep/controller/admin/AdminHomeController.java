@@ -13,9 +13,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.project.DuAnTotNghiep.entity.enumClass.BillStatus;
 
 @Controller
-public class  AdminHomeController {
+public class AdminHomeController {
     private final BillService billService;
     private final ProductService productService;
 
@@ -23,7 +24,8 @@ public class  AdminHomeController {
 
     private final AccountService accountService;
 
-    public AdminHomeController(BillService billService, ProductService productService, BillRepository billRepository, AccountService accountService) {
+    public AdminHomeController(BillService billService, ProductService productService, BillRepository billRepository,
+            AccountService accountService) {
         this.billService = billService;
         this.productService = productService;
         this.billRepository = billRepository;
@@ -35,11 +37,13 @@ public class  AdminHomeController {
         Page<BillDtoInterface> billDtos = billService.findAll(Pageable.ofSize(10));
         Page<ProductDto> productDtos = productService.getAllProductApi(Pageable.ofSize(10));
 
-        model.addAttribute("billList", billRepository.findAll(PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "createDate"))));
+        model.addAttribute("billList",
+                billRepository.findAll(PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "createDate"))));
         model.addAttribute("totalBillQuantity", billDtos.getTotalElements());
         model.addAttribute("totalProduct", productDtos.getTotalElements());
         model.addAttribute("revenue", billRepository.calculateTotalRevenue());
         model.addAttribute("totalBillWaiting", billRepository.getTotalBillStatusWaiting());
-        return "/admin/index";
+        model.addAttribute("BillStatus", BillStatus.values());
+        return "admin/index";
     }
 }

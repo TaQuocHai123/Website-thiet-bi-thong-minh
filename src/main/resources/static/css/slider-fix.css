@@ -8,7 +8,8 @@
     height: 90vh;
     min-height: 800px;
     position: relative;
-    z-index: 1; /* Lower z-index so header stays above */
+    z-index: 1;
+    /* Lower z-index so header stays above */
 }
 
 /* Slider wrapper */
@@ -106,7 +107,7 @@
     display: none;
     background: white;
     min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 10000 !important;
     border-radius: 4px;
     padding: 8px 0;
@@ -125,10 +126,11 @@
     background-color: #f1f1f1;
 }
 
-#accountDropdown:hover + #accountDropdownMenu,
+#accountDropdown:hover+#accountDropdownMenu,
 #accountDropdownMenu:hover {
     display: block;
 }
+
 .header-v3 {
     position: relative;
     z-index: 1000 !important;
@@ -139,7 +141,7 @@
 }
 
 /* Ensure dropdown menus are visible */
-.main-menu > li > .sub-menu {
+.main-menu>li>.sub-menu {
     z-index: 1001 !important;
 }
 

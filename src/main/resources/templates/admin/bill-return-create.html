@@ -106,26 +106,26 @@
             border: none;
             cursor: pointer;
         }
-
     </style>
 </head>
+
 <body>
     <div id="overlay"></div>
     <div id="loading-overlay">
         <div class="loading-spinner"></div>
     </div>
     <div id="bill-modal" tabindex="-1" aria-hidden="true"
-         class="fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        class="fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-5xl max-h-full left-1/4 top-1/4">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <button type="button"
-                        class="close-modal-bill absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="crypto-modal">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    class="close-modal-bill absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="crypto-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                     </svg>
                     <span class="sr-only">Close modal</span>
                 </button>
@@ -137,40 +137,40 @@
                 </div>
                 <!-- Modal body -->
                 <div class="px-6 pt-6 pb-8">
-                  <div class="flex">
+                    <div class="flex">
                         <div class="filter-container mr-3 shadow p-4">
                             <h5 class="mb-3 font-bold text-sm">Tìm kiếm</h5>
                             <div class="mb-4 w-60">
                                 <input type="text" name="bill-search-keyword" id="bill-search-keyword"
-                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                       placeholder="Theo hóa đơn, khách hàng">
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    placeholder="Theo hóa đơn, khách hàng">
                             </div>
                         </div>
                         <div class="bill-list flex-1 overflow-y-auto max-h-96">
                             <table class="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                 <thead class="text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">
-                                        Mã hóa đơn
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Thời gian
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Khách hàng
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Tổng tiền
-                                    </th>
-                                    <th></th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">
+                                            Mã hóa đơn
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Thời gian
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Khách hàng
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Tổng tiền
+                                        </th>
+                                        <th></th>
+                                    </tr>
                                 </thead>
                                 <tbody class="bill-select-list">
 
                                 </tbody>
                             </table>
                         </div>
-                  </div>
+                    </div>
 
                 </div>
             </div>
@@ -178,16 +178,16 @@
     </div>
 
     <div id="product-exchange-modal" tabindex="-1" aria-hidden="true"
-         class="fixed hidden top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        class="fixed hidden top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-5xl max-h-full left-1/4 top-24">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <button type="button"
-                        class="close-modal-exchange absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                              stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    class="close-modal-exchange absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                     </svg>
                     <span class="sr-only">Close modal</span>
                 </button>
@@ -199,9 +199,9 @@
                 </div>
                 <!-- Modal body -->
                 <div class="px-6 pt-6 pb-16 ">
-                        <div class="product-exchange-select-table">
-                            <table class="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <thead class="text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <div class="product-exchange-select-table">
+                        <table class="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <thead class="text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Tên sản phẩm
@@ -217,28 +217,29 @@
                                     </th>
                                     <th scope="cold" class="px-6 py-3">Còn</th>
                                 </tr>
-                                </thead>
-                                <tbody class="product-exchange-select-list">
+                            </thead>
+                            <tbody class="product-exchange-select-list">
 
-                                </tbody>
-                            </table>
-                            <button type="button" id="choose-exchange-product-list-btn" class="float-right mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Chọn</button>
-                        </div>
+                            </tbody>
+                        </table>
+                        <button type="button" id="choose-exchange-product-list-btn"
+                            class="float-right mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Chọn</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 
     <div class="scan-container z-10 bg-white p-12 rounded-lg shadow-md absolute left-1/4 top-1/4 hidden">
         <video id="qr-video" width="300" height="200" autoplay class="mb-4"></video>
         <canvas id="qr-canvas" width="300" height="200" style="display: none"></canvas>
-        <button type="button" class="close-modal-scan absolute top-1 right-1 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                data-modal-hide="crypto-modal">
-            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                 fill="none" viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                      stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+        <button type="button"
+            class="close-modal-scan absolute top-1 right-1 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            data-modal-hide="crypto-modal">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
             </svg>
             <span class="sr-only">Close modal</span>
         </button>
@@ -250,51 +251,50 @@
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
                     <button type="button" id="select-other-bill-btn"
-                            class="pl-8 font-bold bg-gray-50 cursor-pointer border border-gray-300 text-gray-900 text-sm outline-none rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-
-                            style="width: 200px">Chọn đơn khác</button>
+                        class="pl-8 font-bold bg-gray-50 cursor-pointer border border-gray-300 text-gray-900 text-sm outline-none rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        style="width: 200px">Chọn đơn khác</button>
 
                 </div>
             </div>
             <div mr-2>
                 <a class="text-white cursor-pointer hover:bg-black/[.54] rounded-lg" th:href="@{/admin}">
                     <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                         viewBox="0 0 20 20">
+                        viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9" />
+                            d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9" />
                     </svg>
                 </a>
             </div>
-<!--            <div class="ml-4 mr-2 cursor-pointer hover:bg-black/[.54] rounded-lg" id="enable-camera-button">-->
-<!--                <span>-->
-<!--                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 256 256">-->
-<!--                        <path fill="white"-->
-<!--                              d="M232 48v40a8 8 0 0 1-16 0V56h-32a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8ZM72 200H40v-32a8 8 0 0 0-16 0v40a8 8 0 0 0 8 8h40a8 8 0 0 0 0-16Zm152-40a8 8 0 0 0-8 8v32h-32a8 8 0 0 0 0 16h40a8 8 0 0 0 8-8v-40a8 8 0 0 0-8-8ZM32 96a8 8 0 0 0 8-8V56h32a8 8 0 0 0 0-16H32a8 8 0 0 0-8 8v40a8 8 0 0 0 8 8Zm48-16a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Zm104 88V88a8 8 0 0 0-16 0v80a8 8 0 0 0 16 0Zm-40-88a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Zm-32 0a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Z" />-->
-<!--                    </svg>-->
-<!--                </span>-->
-<!--            </div>-->
-<!--            <div class="tab-container" data-tab-number="1">-->
-<!--                <div class="tab-list">-->
-<!--                    <div data-tab-number="1" class="tab active font-bold relative cursor-pointer">-->
+            <!--            <div class="ml-4 mr-2 cursor-pointer hover:bg-black/[.54] rounded-lg" id="enable-camera-button">-->
+            <!--                <span>-->
+            <!--                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 256 256">-->
+            <!--                        <path fill="white"-->
+            <!--                              d="M232 48v40a8 8 0 0 1-16 0V56h-32a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8ZM72 200H40v-32a8 8 0 0 0-16 0v40a8 8 0 0 0 8 8h40a8 8 0 0 0 0-16Zm152-40a8 8 0 0 0-8 8v32h-32a8 8 0 0 0 0 16h40a8 8 0 0 0 8-8v-40a8 8 0 0 0-8-8ZM32 96a8 8 0 0 0 8-8V56h32a8 8 0 0 0 0-16H32a8 8 0 0 0-8 8v40a8 8 0 0 0 8 8Zm48-16a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Zm104 88V88a8 8 0 0 0-16 0v80a8 8 0 0 0 16 0Zm-40-88a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Zm-32 0a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Z" />-->
+            <!--                    </svg>-->
+            <!--                </span>-->
+            <!--            </div>-->
+            <!--            <div class="tab-container" data-tab-number="1">-->
+            <!--                <div class="tab-list">-->
+            <!--                    <div data-tab-number="1" class="tab active font-bold relative cursor-pointer">-->
 
-<!--                        Đổi trả <span>1</span>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <span class="add-tab-btn h-6 w-6 block hover:bg-gray-700 rounded-full flex justify-center items-center">-->
-<!--                    <div>-->
-<!--                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">-->
-<!--                            <path fill="white"-->
-<!--                                  d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3zm0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5zm-1 5v5h-5v2h5v5h2v-5h5v-2h-5v-5h-2z" />-->
-<!--                        </svg>-->
-<!--                    </div>-->
-<!--                </span>-->
-<!--            </div>-->
+            <!--                        Đổi trả <span>1</span>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <span class="add-tab-btn h-6 w-6 block hover:bg-gray-700 rounded-full flex justify-center items-center">-->
+            <!--                    <div>-->
+            <!--                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">-->
+            <!--                            <path fill="white"-->
+            <!--                                  d="M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3zm0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5zm-1 5v5h-5v2h5v5h2v-5h5v-2h-5v-5h-2z" />-->
+            <!--                        </svg>-->
+            <!--                    </div>-->
+            <!--                </span>-->
+            <!--            </div>-->
         </div>
     </nav>
     <div class="grid grid-cols-6 gaps-2 bg-slate-50">
@@ -305,33 +305,33 @@
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <!--                            <th scope="col" class="px-2 py-3">-->
-                            <!--                                STT-->
-                            <!--                            </th>-->
-                            <th scope="col" class="px-3 py-3">
-                                Ảnh
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Tên sản phẩm
-                            </th>
-                            <th scope="col" class="px-3 py-3">
-                                Màu
-                            </th>
-                            <th scope="col" class="px-3 py-3">
-                                Cỡ
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Số lượng
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Đơn giá
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Thành tiền trả
-                            </th>
-                            <th scope="col"></th>
-                        </tr>
+                            <tr>
+                                <!--                            <th scope="col" class="px-2 py-3">-->
+                                <!--                                STT-->
+                                <!--                            </th>-->
+                                <th scope="col" class="px-3 py-3">
+                                    Ảnh
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Tên sản phẩm
+                                </th>
+                                <th scope="col" class="px-3 py-3">
+                                    Màu
+                                </th>
+                                <th scope="col" class="px-3 py-3">
+                                    Cỡ
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Số lượng
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Đơn giá
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Thành tiền trả
+                                </th>
+                                <th scope="col"></th>
+                            </tr>
                         </thead>
                         <tbody data-tab-number="1" class="product-select-body active">
 
@@ -346,70 +346,70 @@
                         <div class="mr-2">
                             <span class="text-white font-bold">Danh sách hàng đổi</span>
                         </div>
-<!--                        <div class="search-container w- mr-2">-->
-<!--                            <div class="relative">-->
-<!--                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">-->
-<!--                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"-->
-<!--                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">-->
-<!--                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
-<!--                                              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />-->
-<!--                                    </svg>-->
-<!--                                </div>-->
-<!--                                <input-->
-<!--                                        class="pl-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm outline-none rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"-->
-<!--                                        type="search" placeholder="Thêm hàng đổi" aria-label="Search" id="search-product"-->
-<!--                                        style="width: 500px">-->
-<!--                                <div-->
-<!--                                        class="list-search-product hidden bg-white mt-2 rounded-md absolute top-9 px-2 py-2 left-0 z-50 shadow-lg right-0 max-h-80 overflow-y-scroll">-->
+                        <!--                        <div class="search-container w- mr-2">-->
+                        <!--                            <div class="relative">-->
+                        <!--                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">-->
+                        <!--                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"-->
+                        <!--                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">-->
+                        <!--                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
+                        <!--                                              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />-->
+                        <!--                                    </svg>-->
+                        <!--                                </div>-->
+                        <!--                                <input-->
+                        <!--                                        class="pl-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm outline-none rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"-->
+                        <!--                                        type="search" placeholder="Thêm hàng đổi" aria-label="Search" id="search-product"-->
+                        <!--                                        style="width: 500px">-->
+                        <!--                                <div-->
+                        <!--                                        class="list-search-product hidden bg-white mt-2 rounded-md absolute top-9 px-2 py-2 left-0 z-50 shadow-lg right-0 max-h-80 overflow-y-scroll">-->
 
-<!--                                </div>-->
-<!--                                <div class="no-search-found absolute px-2 py-2 hidden bg-white mt-2 rounded-md absolute top-9 px-2 py-2 left-0 z-50 shadow-lg right-0">-->
-<!--                                    <span class="text-gray-400 text italic">Không thấy sản phẩm nào</span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="no-search-found absolute px-2 py-2 hidden bg-white mt-2 rounded-md absolute top-9 px-2 py-2 left-0 z-50 shadow-lg right-0">-->
+                        <!--                                    <span class="text-gray-400 text italic">Không thấy sản phẩm nào</span>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
 
-<!--                        <div class="ml-4 mr-2 cursor-pointer hover:bg-black/[.54] rounded-lg" id="enable-camera-button">-->
-<!--                            <span>-->
-<!--                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 256 256">-->
-<!--                                    <path fill="white"-->
-<!--                                          d="M232 48v40a8 8 0 0 1-16 0V56h-32a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8ZM72 200H40v-32a8 8 0 0 0-16 0v40a8 8 0 0 0 8 8h40a8 8 0 0 0 0-16Zm152-40a8 8 0 0 0-8 8v32h-32a8 8 0 0 0 0 16h40a8 8 0 0 0 8-8v-40a8 8 0 0 0-8-8ZM32 96a8 8 0 0 0 8-8V56h32a8 8 0 0 0 0-16H32a8 8 0 0 0-8 8v40a8 8 0 0 0 8 8Zm48-16a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Zm104 88V88a8 8 0 0 0-16 0v80a8 8 0 0 0 16 0Zm-40-88a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Zm-32 0a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Z" />-->
-<!--                                </svg>-->
-<!--                            </span>-->
-<!--                        </div>-->
+                        <!--                        <div class="ml-4 mr-2 cursor-pointer hover:bg-black/[.54] rounded-lg" id="enable-camera-button">-->
+                        <!--                            <span>-->
+                        <!--                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 256 256">-->
+                        <!--                                    <path fill="white"-->
+                        <!--                                          d="M232 48v40a8 8 0 0 1-16 0V56h-32a8 8 0 0 1 0-16h40a8 8 0 0 1 8 8ZM72 200H40v-32a8 8 0 0 0-16 0v40a8 8 0 0 0 8 8h40a8 8 0 0 0 0-16Zm152-40a8 8 0 0 0-8 8v32h-32a8 8 0 0 0 0 16h40a8 8 0 0 0 8-8v-40a8 8 0 0 0-8-8ZM32 96a8 8 0 0 0 8-8V56h32a8 8 0 0 0 0-16H32a8 8 0 0 0-8 8v40a8 8 0 0 0 8 8Zm48-16a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Zm104 88V88a8 8 0 0 0-16 0v80a8 8 0 0 0 16 0Zm-40-88a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Zm-32 0a8 8 0 0 0-8 8v80a8 8 0 0 0 16 0V88a8 8 0 0 0-8-8Z" />-->
+                        <!--                                </svg>-->
+                        <!--                            </span>-->
+                        <!--                        </div>-->
 
                     </div>
                 </nav>
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <!--                            <th scope="col" class="px-2 py-3">-->
-                            <!--                                STT-->
-                            <!--                            </th>-->
-                            <th scope="col" class="px-3 py-3">
-                                Ảnh
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Tên sản phẩm
-                            </th>
-                            <th scope="col" class="px-3 py-3">
-                                Màu
-                            </th>
-                            <th scope="col" class="px-3 py-3">
-                                Cỡ
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Số lượng
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Đơn giá
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Thành tiền
-                            </th>
-                            <th scope="col"></th>
-                        </tr>
+                            <tr>
+                                <!--                            <th scope="col" class="px-2 py-3">-->
+                                <!--                                STT-->
+                                <!--                            </th>-->
+                                <th scope="col" class="px-3 py-3">
+                                    Ảnh
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Tên sản phẩm
+                                </th>
+                                <th scope="col" class="px-3 py-3">
+                                    Màu
+                                </th>
+                                <th scope="col" class="px-3 py-3">
+                                    Cỡ
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Số lượng
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Đơn giá
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Thành tiền
+                                </th>
+                                <th scope="col"></th>
+                            </tr>
                         </thead>
                         <tbody data-tab-number="1" class="product-exchange-selected-list">
 
@@ -438,9 +438,10 @@
                 </div>
                 <div class="mb-3">
                     <div class="flex justify-between">
-                        <label >Phí trả hàng: </label>
+                        <label>Phí trả hàng: </label>
                         <div class="fee-exchange-container h-8 w-20">
-                            <input class="fee-exchange border-b-2 w-8 ouline-0 focus:outline-0 focus:border-b-blue-400" type="text" name="fee-exchange" value="0">
+                            <input class="fee-exchange border-b-2 w-8 ouline-0 focus:outline-0 focus:border-b-blue-400"
+                                type="text" name="fee-exchange" value="0">
                             <span>&nbsp;%</span>
                         </div>
                     </div>
@@ -480,10 +481,10 @@
                 <div class="exchange-payment-area mt-2">
                     <div class="flex justify-between">
                         <span class="text-fuchsia-500 font-bold text-xl">Đổi hàng</span>
-<!--                        <div class="flex items-center mb-4">-->
-<!--                            <input id="shipping" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">-->
-<!--                            <label for="shipping" class="ms-2 text-sm text-blue-700 dark:text-blue-300 font-bold">Giao hàng</label>-->
-<!--                        </div>-->
+                        <!--                        <div class="flex items-center mb-4">-->
+                        <!--                            <input id="shipping" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">-->
+                        <!--                            <label for="shipping" class="ms-2 text-sm text-blue-700 dark:text-blue-300 font-bold">Giao hàng</label>-->
+                        <!--                        </div>-->
                     </div>
                     <div class="col">
                         <h5 class="">Tổng tiền hàng đổi: </h5>
@@ -512,9 +513,10 @@
                 </div>
                 <div class="mt-4">
                     <label>Lý do:</label>
-                    <select id="reason" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="Mặc chật" selected>Mặc chật</option>
-                        <option value="Đổi màu">Đổi màu</option>
+                    <select id="reason"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="Không còn nhu cầu" selected>Không còn nhu cầu</option>
+                        <option value="Đổi loại">Đổi loại</option>
                         <option value="Hàng lỗi">Hàng lỗi</option>
                         <option value="Khác">Khác</option>
                     </select>
@@ -525,18 +527,18 @@
                         class="mr-2">Tiền mặt</label>
                     <!-- <input type="radio" th:value="4" name="paymentMethod" id="payment-card"> <label
                     class="mr-2">Thẻ</label> -->
-                    <input type="radio" value="3" name="paymentMethod" id="payment-online"> <label class="mr-2">Chuyển khoản</label>
+                    <input type="radio" value="3" name="paymentMethod" id="payment-online"> <label class="mr-2">Chuyển
+                        khoản</label>
                 </div>
 
                 <button
-                        class="text-white w-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-bold rounded-lg text-2xl px-5 py-4 mt-3 text-center"
-                        id="submitBtn" type="button">TRẢ HÀNG
+                    class="text-white w-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-bold rounded-lg text-2xl px-5 py-4 mt-3 text-center"
+                    id="submitBtn" type="button">TRẢ HÀNG
                 </button>
             </div>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-                th:inline="javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" th:inline="javascript"></script>
         <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -593,7 +595,7 @@
                     dataType: 'json',
                     success: function (data) {
                         billList = data.content
-                       loadHtmlBill(billList)
+                        loadHtmlBill(billList)
                     },
                     error: function (xhr, status, error) {
                         Swal.fire({
@@ -610,24 +612,24 @@
                     }
                     var searchKey = $(this).val().trim()
                     debounceTimer = setTimeout(async function () {
-                            await $.ajax({
-                                method: 'GET',
-                                type: 'json',
-                                url: `/admin/api/bill/validToReturn/search?keyword=${searchKey}`,
-                                contentType: "application/json; charset=utf-8",
-                                success: function (data) {
-                                    billList = data.content
-                                    loadHtmlBill(billList)
-                                },
-                                error: function (xhr, status, error) {
-                                    Swal.fire({
-                                        title: "Lỗi",
-                                        text: xhr.responseJSON.message,
-                                        icon: "error"
-                                    });
-                                }
-                            })
-                        }, 500)
+                        await $.ajax({
+                            method: 'GET',
+                            type: 'json',
+                            url: `/admin/api/bill/validToReturn/search?keyword=${searchKey}`,
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                billList = data.content
+                                loadHtmlBill(billList)
+                            },
+                            error: function (xhr, status, error) {
+                                Swal.fire({
+                                    title: "Lỗi",
+                                    text: xhr.responseJSON.message,
+                                    icon: "error"
+                                });
+                            }
+                        })
+                    }, 500)
 
                 })
 
@@ -637,10 +639,10 @@
                         const createdDate = formatLocalDateTime(bill.createDate);
                         const totalAmount = formatNumber(bill.totalAmount)
                         var customerName = bill.customer.name
-                        if(customerName == null) {
+                        if (customerName == null) {
                             customerName = 'Khách lẻ'
                         }
-                        html+=`<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        html += `<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             ${bill.code}
                                         </th>
@@ -674,7 +676,7 @@
                 function handleClickSelectBill() {
                     $('.select-bill-btn').on('click', function () {
                         const billId = $(this).attr('data-select-bill')
-                         billObj = billList.find(bill => bill.id == billId)
+                        billObj = billList.find(bill => bill.id == billId)
                         $.ajax({
                             type: 'GET',
                             url: `/admin/api/product/${billId}/bill`,
@@ -794,7 +796,7 @@
                         const detailId = $(this).attr('data-product-detail-id')
                         var detail = product.productDetailDtos.find(detail => detail.id == detailId)
 
-                        if(detail.quantity == 0) {
+                        if (detail.quantity == 0) {
 
                             Toastify({
                                 text: "Sản phẩm có thuộc tính này đã hết",
@@ -806,7 +808,7 @@
                             return;
                         }
 
-                        if(detail.price < priceCheck) {
+                        if (detail.price < priceCheck) {
                             Toastify({
                                 text: "Chỉ được chọn sản phẩm có giá lớn hơn hoặc bằng giá sản phẩm trả",
                                 className: "error",
@@ -818,10 +820,10 @@
                         }
 
 
-                        if($(this).hasClass('selected font-bold border border-2 border-blue-600 bg-blue-50')) {
+                        if ($(this).hasClass('selected font-bold border border-2 border-blue-600 bg-blue-50')) {
                             $(this).removeClass('selected font-bold border border-2 border-blue-600 bg-blue-50')
-                        }else {
-                            if($('.selected').length >= quantityExchange) {
+                        } else {
+                            if ($('.selected').length >= quantityExchange) {
                                 Toastify({
                                     text: `Lưu ý: sản phẩm hiện tại đang đổi ${quantityExchange} chiếc`,
                                     className: "error",
@@ -836,9 +838,9 @@
                         }
 
 
-                        if($('.selected').length == 0) {
+                        if ($('.selected').length == 0) {
                             $('#choose-exchange-product-list-btn').prop('disabled', true)
-                        }else {
+                        } else {
                             $('#choose-exchange-product-list-btn').prop('disabled', false)
                         }
                     })
@@ -854,9 +856,9 @@
                             $(`.detail-${detail.id}`).remove()
                             appendToSelectedList(product, detail, detailIdOf)
 
-                            if(!detailSelectedId.includes(detailId)) {
+                            if (!detailSelectedId.includes(detailId)) {
                                 detailSelectedId.push(detailId)
-                            }else {
+                            } else {
                                 // const selectedItem = $(`.product-selected-item[data-product-detail-id='${detailId}']`).find('.exchange-quantity')
                                 // selectedItem.val(parseInt(selectedItem.val()) + 1)
                             }
@@ -910,9 +912,9 @@
                                 </td>
                            </tr>`
                     $('.product-exchange-selected-list').append(html)
-                    $('.exchange-quantity').on('keypress', function (e) {onlyAllowNumberInput(e)})
+                    $('.exchange-quantity').on('keypress', function (e) { onlyAllowNumberInput(e) })
                     $('.exchange-quantity').on('input change', function () {
-                        if($(this).val() < 1) {
+                        if ($(this).val() < 1) {
                             $(this).val(1)
                         }
 
@@ -927,7 +929,7 @@
                         })
 
 
-                        if(total > totalB) {
+                        if (total > totalB) {
                             // Revert the input value to maintain the constraint
                             var oldValue = $(this).data('oldValue') || 1;
                             $(this).val(oldValue);
@@ -949,7 +951,7 @@
                         const detailId = deleteSelectedItem.attr('data-product-detail-id');
                         detailSelectedId = detailSelectedId.filter(item => item != detailId)
                         deleteSelectedItem.remove()
-                        if($('.product-selected-item').length == 0) {
+                        if ($('.product-selected-item').length == 0) {
                             hideExchange()
                             showReturn()
                             isExchange = false
@@ -988,11 +990,11 @@
                         })
 
                         // Nếu tổng sl đổi lớn hơn tổng số lượng trả
-                        if( totalB < total) {
+                        if (totalB < total) {
                             $(`.product-${productId}`).remove()
                         }
 
-                        if($(this).val() < 0) {
+                        if ($(this).val() < 0) {
                             $(this).val(0)
                         }
                         const $returnQuantity = $(this)
@@ -1000,15 +1002,15 @@
                         var $productDetail = $returnQuantity.closest('.product-select-item')
                         var productDetailId = $productDetail.attr('data-product-detail-id')
 
-                        if(quantity > 0) {
+                        if (quantity > 0) {
                             $productDetail.find('.choose-exchange-product-btn').removeClass('hidden')
-                        }else {
+                        } else {
                             $productDetail.find('.choose-exchange-product-btn').addClass('hidden')
                         }
 
                         var productDetailObj = productInBillList.find(item => item.id == productDetailId)
 
-                        if(quantity > productDetailObj.soLuong) {
+                        if (quantity > productDetailObj.soLuong) {
                             $returnQuantity.val(productDetailObj.soLuong)
                             quantity = productDetailObj.soLuong
                         }
@@ -1020,7 +1022,7 @@
 
                 function loadSelectedBill(bill) {
                     var customerHtml = ''
-                    if(bill.customer.name != null) {
+                    if (bill.customer.name != null) {
                         customerHtml = `${bill.customer.name}`
                     }
                     else {
@@ -1035,13 +1037,13 @@
                     $('#search-product').on('focus input', function () {
                         var checkQuantity = false
                         $('.return-quantity').each((index, item) => {
-                            if($(item).val() > 0) {
+                            if ($(item).val() > 0) {
                                 checkQuantity = true
                                 return
                             }
                         })
 
-                        if(!checkQuantity) {
+                        if (!checkQuantity) {
                             Toastify({
                                 text: "Bạn cần điền hàng trả trước khi tìm hàng cần đổi",
                                 className: "error",
@@ -1049,7 +1051,7 @@
                                     background: "red",
                                 }
                             }).showToast();
-                        }else {
+                        } else {
 
                         }
                     })
@@ -1065,7 +1067,7 @@
 
                 function calculateCustomerReturn() {
                     var allPrice = getAllPrice()
-                    var fee =  getFeeChange()
+                    var fee = getFeeChange()
                     $('#money-change').text(formatNumber(allPrice - fee))
                     calculateAllPriceExchange()
                     calculateLastReturnExchange()
@@ -1098,7 +1100,7 @@
 
                 $('.fee-exchange').on('input change', function () {
                     var percentValue = $(this).val()
-                    if(percentValue > 100) {
+                    if (percentValue > 100) {
                         Toastify({
                             text: "Tối đa 100%",
                             className: "error",
@@ -1132,12 +1134,12 @@
                     const moneyChange = removeAnyNonDigit($('#money-change').text())
 
                     // Nếu tổng tiền hàng đổi lớn hơn tổng tiền hàng trả
-                    if(getAllPriceExchange() > parseFloat(moneyChange)) {
+                    if (getAllPriceExchange() > parseFloat(moneyChange)) {
                         $('#khachCanTra').show()
                         $('#canTraKhach').hide()
 
                         $('#require-money').text(formatNumber(getAllPriceExchange() - moneyChange))
-                    }else {
+                    } else {
                         $('#khachCanTra').hide()
                         $('#canTraKhach').show()
 
@@ -1185,7 +1187,7 @@
                     $('#money-change').text(0)
                 }
 
-            //    ============================== XỬ LÝ THANH TOÁN ===============================
+                //    ============================== XỬ LÝ THANH TOÁN ===============================
 
 
                 $('#submitBtn').on('click', handleSubmit);
@@ -1204,7 +1206,7 @@
                     $('.product-select-item').each((index, item) => {
                         var $productItem = $(item);
 
-                        if($(item).find('.return-quantity').val() > 0) {
+                        if ($(item).find('.return-quantity').val() > 0) {
                             checkQuantity = true
                         }
 
@@ -1217,7 +1219,7 @@
                         dataSend.refundDtos.push(refund)
                     })
 
-                    if(checkQuantity == false) {
+                    if (checkQuantity == false) {
                         Swal.fire({
                             title: "Lỗi",
                             text: "Vui lòng nhập hàng đổi trả",
@@ -1288,4 +1290,5 @@
         </script>
     </div>
 </body>
+
 </html>

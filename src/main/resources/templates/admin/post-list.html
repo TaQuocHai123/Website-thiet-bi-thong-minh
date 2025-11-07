@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin/admin-layout.html}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách bài viết</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <h4>Danh sách bài viết</h4>
+        <a href="/admin/post-create" class="btn btn-success mb-3"><i class="fa fa-plus"></i> Tạo bài viết</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tiêu đề</th>
+                    <th>Tác giả</th>
+                    <th>Đã đăng</th>
+                    <th>Ngày tạo</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="a,iterStat : ${articles}">
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${a.title}"></td>
+                    <td th:text="${a.author}"></td>
+                    <td th:text="${a.published} ? 'Yes' : 'No'"></td>
+                    <td th:text="${#temporals.format(a.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+                    <td>
+                        <a th:href="@{'/admin/post-edit'(id=${a.id})}" class="btn btn-primary btn-sm">Sửa</a>
+                        <button type="button" class="btn btn-danger btn-sm" th:attr="data-id=${a.id},data-title=${a.title}" onclick="openDeleteModal(this)">Xóa</button>
+                    </td>
+                </tr>
+                <tr th:if="${articles.size()} == 0">
+                    <td colspan="5">Không có bài viết</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Delete confirmation modal and form -->
+        <form id="deleteForm" th:action="@{/admin/post-delete}" method="post" style="display:none">
+            <input type="hidden" name="id" id="deleteId" />
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        </form>
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            function openDeleteModal(btn) {
+                var $btn = $(btn);
+                var id = $btn.data('id');
+                var title = $btn.data('title');
+                // Use SweetAlert2 (already included) for a consistent confirmation dialog
+                Swal.fire({
+                    title: 'Xác nhận xóa',
+                    html: `Bạn có chắc muốn xóa bài viết sau:<br><strong>${title}</strong>`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Xóa',
+                    cancelButtonText: 'Hủy',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#deleteId').val(id);
+                        $('#deleteForm').submit();
+                    }
+                });
+            }
+            /*]]>*/
+        </script>
+    </div>
+</body>
+
+</html>
