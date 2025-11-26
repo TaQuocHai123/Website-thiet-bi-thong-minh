@@ -1,6 +1,5 @@
 package com.project.DuAnTotNghiep.controller.admin;
 
-
 import com.project.DuAnTotNghiep.entity.Color;
 import com.project.DuAnTotNghiep.entity.Image;
 import com.project.DuAnTotNghiep.entity.Product;
@@ -39,16 +38,27 @@ public class ProductDetailController {
     @Autowired
     private ImageService imageService;
 
-    @GetMapping("/admin/chi-tiet-san-pham/{code}")
-    public String getProductDetailPage(@PathVariable String code, Model model) {
-        Product product = productService.getProductByCode(code);
-        if(product != null) {
+    @GetMapping("/admin/chi-tiet-san-pham/{id}")
+    public String getProductDetailPage(@PathVariable Long id, Model model) {
+        Product product = productService.getProductById(id).orElse(null);
+        if (product != null) {
             model.addAttribute("product", product);
             model.addAttribute("productDetails", product.getProductDetails());
             return "admin/product-detail";
         }
 
         return "error/404";
+    }
+
+    // Backwards compatibility: allow code-based lookups but redirect to ID-based
+    // admin route
+    @GetMapping("/admin/chi-tiet-san-pham/code/{code}")
+    public String redirectProductDetailByCode(@PathVariable String code) {
+        Product product = productService.getProductByCode(code);
+        if (product == null) {
+            return "error/404";
+        }
+        return "redirect:/admin/chi-tiet-san-pham/" + product.getId();
     }
 
     @ModelAttribute("listSize")

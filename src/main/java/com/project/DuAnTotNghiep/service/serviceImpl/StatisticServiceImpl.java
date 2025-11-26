@@ -24,7 +24,8 @@ public class StatisticServiceImpl implements StatisticService {
 
     private final CustomerRepository customerRepository;
 
-    public StatisticServiceImpl(BillRepository billRepository, ProductRepository productRepository, CustomerRepository customerRepository) {
+    public StatisticServiceImpl(BillRepository billRepository, ProductRepository productRepository,
+            CustomerRepository customerRepository) {
         this.billRepository = billRepository;
         this.productRepository = productRepository;
         this.customerRepository = customerRepository;
@@ -46,7 +47,7 @@ public class StatisticServiceImpl implements StatisticService {
             currentDate = currentDate.plusDays(1);
         }
 
-// Điền vào doanh thu cho mỗi ngày
+        // Điền vào doanh thu cho mỗi ngày
         Map<LocalDate, Double> revenueMap = new HashMap<>();
         for (Object[] result : results) {
             java.sql.Date sqlDate = (java.sql.Date) result[0];
@@ -68,19 +69,19 @@ public class StatisticServiceImpl implements StatisticService {
         LocalDateTime endDateTime = LocalDateTime.parse(endDate + "T23:59:59");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-
-        List<Object[]> results = billRepository.statisticRevenueDaily(startDateTime.format(formatter), endDateTime.format(formatter));
+        List<Object[]> results = billRepository.statisticRevenueDaily(startDateTime.format(formatter),
+                endDateTime.format(formatter));
 
         Map<LocalDate, BigDecimal> result = new LinkedHashMap<>();
 
-// Iterate through all the days in the date range
+        // Iterate through all the days in the date range
         LocalDate currentDate = startDateTime.toLocalDate();
         while (!currentDate.isAfter(endDateTime.toLocalDate())) {
             result.put(currentDate, BigDecimal.ZERO);
             currentDate = currentDate.plusDays(1);
         }
 
-// Update the revenue for days with orders
+        // Update the revenue for days with orders
         for (Object[] object : results) {
             LocalDate orderDate = LocalDate.parse((String) object[0]);
             BigDecimal totalAmount = BigDecimal.valueOf((Double) object[1]);
@@ -89,7 +90,7 @@ public class StatisticServiceImpl implements StatisticService {
             result.put(orderDate, result.getOrDefault(orderDate, BigDecimal.ZERO).add(totalAmount));
         }
 
-// Now, convert the result to a sorted List<DayInMonthStatistic2>
+        // Now, convert the result to a sorted List<DayInMonthStatistic2>
         List<DayInMonthStatistic2> statistics = result.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .map(entry -> new DayInMonthStatistic2(entry.getKey().toString().substring(5), entry.getValue()))
@@ -117,7 +118,7 @@ public class StatisticServiceImpl implements StatisticService {
 
         Map<Integer, BigDecimal> revenueMap = new HashMap<>();
         for (Object[] result : results) {
-            int month = (Integer)result[0];
+            int month = (Integer) result[0];
             BigDecimal totalAmount = BigDecimal.valueOf((Double) result[1]);
 
             revenueMap.put(month, revenueMap.getOrDefault(month, BigDecimal.ZERO).add(totalAmount));
@@ -140,18 +141,20 @@ public class StatisticServiceImpl implements StatisticService {
         LocalDate startDate = LocalDate.parse(fromDate + "-01", formatter);
         LocalDate endDate = LocalDate.parse(toDate + "-01", formatter).plusMonths(1).minusDays(1);
 
-        List<LocalDate> monthRange = startDate.datesUntil(endDate.plusDays(1), java.time.Period.ofMonths(1)).collect(Collectors.toList());
+        List<LocalDate> monthRange = startDate.datesUntil(endDate.plusDays(1), java.time.Period.ofMonths(1))
+                .collect(Collectors.toList());
 
         // Retrieve completed orders from the repository within the date range
-        List<Object[]> results = billRepository.statisticRevenueFormMonth(startDate.format(formatter), endDate.format(formatter));
+        List<Object[]> results = billRepository.statisticRevenueFormMonth(startDate.format(formatter),
+                endDate.format(formatter));
 
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MM-yyyy");
         // Calculate revenue per month
         Map<String, BigDecimal> revenueMap = results.stream()
                 .collect(Collectors.groupingBy(
-                        result -> (String)result[0],
-                        Collectors.reducing(BigDecimal.ZERO, result -> BigDecimal.valueOf((Double)result[1]), BigDecimal::add)
-                ));
+                        result -> (String) result[0],
+                        Collectors.reducing(BigDecimal.ZERO, result -> BigDecimal.valueOf((Double) result[1]),
+                                BigDecimal::add)));
 
         return monthRange.stream()
                 .map(month -> {
@@ -162,11 +165,21 @@ public class StatisticServiceImpl implements StatisticService {
                 .collect(Collectors.toList());
     }
 
-
-
     @Override
     public List<BestSellerProduct> getBestSellerProduct(String fromDate, String toDate) {
         return productRepository.getBestSellerProduct(fromDate, toDate);
+    }
+
+    @Override
+    public List<ProductStatistic> getTopProductsByRevenue(String month, String year, int topN) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        YearMonth yearMonthObject = YearMonth.of(Integer.parseInt(year), Integer.parseInt(month));
+        LocalDate startDate = yearMonthObject.atDay(1);
+        LocalDate endDate = yearMonthObject.atEndOfMonth();
+        // Use DB query for top N to improve performance
+        List<ProductStatistic> topProducts = productRepository
+                .getTopProductsByRevenueByMonth(startDate.format(formatter), endDate.format(formatter), topN);
+        return topProducts;
     }
 
     public List<TopCustomerBuy> getTopCustomerBuy(String fromDate, String toDate) {

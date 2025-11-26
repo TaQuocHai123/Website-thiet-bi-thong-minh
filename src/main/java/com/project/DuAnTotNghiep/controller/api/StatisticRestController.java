@@ -19,7 +19,8 @@ public class StatisticRestController {
 
     public StatisticRestController(StatisticService statisticService, AccountService accountService) {
         this.statisticService = statisticService;
-        this.accountService = accountService;    }
+        this.accountService = accountService;
+    }
 
     @GetMapping("/api/get-statistic-revenue-day-in-month")
     private List<DayInMonthStatistic> getDayInMonthStatistic(@RequestParam String month, @RequestParam String year) {
@@ -27,18 +28,20 @@ public class StatisticRestController {
     }
 
     @GetMapping("/api/get-statistic-revenue-day-from-time")
-    private List<DayInMonthStatistic2> getDayInMonthStatistic2(@RequestParam String fromDate, @RequestParam String toDate) {
+    private List<DayInMonthStatistic2> getDayInMonthStatistic2(@RequestParam String fromDate,
+            @RequestParam String toDate) {
         return statisticService.getDailyRevenue2(fromDate, toDate);
     }
 
     @GetMapping("/api/get-statistic-revenue-month-from-time")
-    private List<MonthInYearStatistic2> getMonthlyStatistic(@RequestParam String fromMonth, @RequestParam String toMonth) {
+    private List<MonthInYearStatistic2> getMonthlyStatistic(@RequestParam String fromMonth,
+            @RequestParam String toMonth) {
         return statisticService.getMonthlyRevenue(fromMonth, toMonth);
     }
 
-
     @GetMapping("/api/get-bestseller-product")
-    private List<BestSellerProduct> getBestSellerProductInTime(@RequestParam String fromDate, @RequestParam String toDate) {
+    private List<BestSellerProduct> getBestSellerProductInTime(@RequestParam String fromDate,
+            @RequestParam String toDate) {
         return statisticService.getBestSellerProduct(fromDate, toDate);
     }
 
@@ -53,25 +56,33 @@ public class StatisticRestController {
     }
 
     @GetMapping("/api/get-bestseller-product-time")
-    private List<BestSellerProduct> getBestSellerProductTime(@RequestParam String fromDate, @RequestParam String toDate) {
+    private List<BestSellerProduct> getBestSellerProductTime(@RequestParam String fromDate,
+            @RequestParam String toDate) {
         return statisticService.getBestSellerProduct(fromDate, toDate);
     }
 
     @GetMapping("/get-statistic-user-by-month")
     public List<UserStatistic> getStatisticUserByMonth() {
         List<UserStatistic> userStatistics = accountService.getUserStatistics("2023-01-01", "2023-12-31");
-        return  userStatistics;
+        return userStatistics;
     }
 
     @GetMapping("/api/get-statistic-product-time")
-    public List<ProductStatistic> getStatisticProductInTime(@RequestParam String fromDate, @RequestParam String toDate) {
+    public List<ProductStatistic> getStatisticProductInTime(@RequestParam String fromDate,
+            @RequestParam String toDate) {
         List<ProductStatistic> productStatistics = statisticService.getStatisticProductInTime(fromDate, toDate);
-        return  productStatistics;
+        return productStatistics;
     }
 
     @GetMapping("/api/get-statistic-order")
     public List<OrderStatistic> getStatisticOrder() {
         List<OrderStatistic> orderStatisticList = statisticService.getStatisticOrder();
         return orderStatisticList;
+    }
+
+    @GetMapping("/api/get-top-products-revenue")
+    public List<ProductStatistic> getTopProductsByRevenue(@RequestParam String month, @RequestParam String year,
+            @RequestParam(defaultValue = "5") int topN) {
+        return statisticService.getTopProductsByRevenue(month, year, topN);
     }
 }

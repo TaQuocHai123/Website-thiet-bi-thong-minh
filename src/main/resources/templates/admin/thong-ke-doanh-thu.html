@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{admin/admin-layout.html}">
+    layout:decorate="~{admin/admin-layout.html}">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
     <div class="main-wrapper" layout:fragment="content">
         <h4>Thống kê doanh thu</h4>
@@ -14,12 +16,17 @@
                     <div class="card-body">
                         <div class="dash-widget-header">
                             <div>
-                                <h3 class="card_widget_header" th:text="${#numbers.formatDecimal(revenueAll, 0, 'POINT', 0, 'COMMA')}"></h3>
-                                <h6 class="text-muted">Tổng doanh thu</h6> </div>
-                            <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="#009688" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
-									<line x1="12" y1="1" x2="12" y2="23"></line>
-									<path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-									</svg></span> </div>
+                                <h3 class="card_widget_header"
+                                    th:text="${#numbers.formatDecimal(revenueAll, 0, 'POINT', 0, 'COMMA')}"></h3>
+                                <h6 class="text-muted">Tổng doanh thu</h6>
+                            </div>
+                            <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"
+                                        fill="none" stroke="#009688" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-dollar-sign">
+                                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                    </svg></span> </div>
                         </div>
                     </div>
                 </div>
@@ -29,16 +36,29 @@
                     <div class="card-body">
                         <div class="dash-widget-header">
                             <div>
-                                <h3 class="card_widget_header" th:text="${#numbers.formatDecimal(revenueToday, 0, 'POINT', 0, 'COMMA')}">2</h3>
-                                <h6 class="text-muted">Doanh thu hôm nay</h6> </div>
+                                <h3 class="card_widget_header"
+                                    th:text="${#numbers.formatDecimal(revenueToday, 0, 'POINT', 0, 'COMMA')}">2</h3>
+                                <h6 class="text-muted">Doanh thu hôm nay</h6>
+                            </div>
                             <div class="ml-auto mt-md-3 mt-lg-0">
 
-                                <svg th:if="${percentageYesterday >= 0}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="green" d="M14 2.75a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-.69l-4.47 4.47a.75.75 0 0 1-1.06 0L8.5 6.56l-4.22 4.22a.75.75 0 1 1-1.06-1.06l4.75-4.75a.75.75 0 0 1 1.06 0l2.47 2.47l3.94-3.94h-.69a.75.75 0 0 1-.75-.75ZM3.75 14a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 .75-.75Zm4.75-2.25a.75.75 0 0 0-1.5 0v5.5a.75.75 0 0 0 1.5 0v-5.5ZM11.75 13a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75Zm4.75-3.25a.75.75 0 0 0-1.5 0v7.5a.75.75 0 0 0 1.5 0v-7.5Z"/></svg>
+                                <svg th:if="${percentageYesterday >= 0}" xmlns="http://www.w3.org/2000/svg" width="20"
+                                    height="20" viewBox="0 0 20 20">
+                                    <path fill="green"
+                                        d="M14 2.75a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-.69l-4.47 4.47a.75.75 0 0 1-1.06 0L8.5 6.56l-4.22 4.22a.75.75 0 1 1-1.06-1.06l4.75-4.75a.75.75 0 0 1 1.06 0l2.47 2.47l3.94-3.94h-.69a.75.75 0 0 1-.75-.75ZM3.75 14a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 .75-.75Zm4.75-2.25a.75.75 0 0 0-1.5 0v5.5a.75.75 0 0 0 1.5 0v-5.5ZM11.75 13a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75Zm4.75-3.25a.75.75 0 0 0-1.5 0v7.5a.75.75 0 0 0 1.5 0v-7.5Z" />
+                                </svg>
 
-                                <svg th:if="${percentageYesterday < 0}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 14 14"><path fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" d="m1.24.5l11.5 5.23m-2.15.81l2.15-.81l-.8-2.16M1.25 6h1.5a.5.5 0 0 1 .5.5v7H.75v-7a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v5.5h-2.5V8a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v4h-2.5v-4a.5.5 0 0 1 .5-.5Z"/></svg>
+                                <svg th:if="${percentageYesterday < 0}" xmlns="http://www.w3.org/2000/svg" width="20"
+                                    height="20" viewBox="0 0 14 14">
+                                    <path fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round"
+                                        d="m1.24.5l11.5 5.23m-2.15.81l2.15-.81l-.8-2.16M1.25 6h1.5a.5.5 0 0 1 .5.5v7H.75v-7a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v5.5h-2.5V8a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v4h-2.5v-4a.5.5 0 0 1 .5-.5Z" />
+                                </svg>
 
-                                <span class="ml-3" th:classappend="${percentageYesterday >= 0 ? 'raise' : 'decrease'}" th:if="${percentageYesterday != 99}" th:text="${#numbers.formatDecimal(percentageYesterday, 0, 2)} + '%'"></span>
-                                <span class="ml-3" th:classappend="${percentageYesterday >= 0 ? 'raise' : 'decrease'}" th:if="${percentageYesterday == 99}">99+%</span>
+                                <span class="ml-3" th:classappend="${percentageYesterday >= 0 ? 'raise' : 'decrease'}"
+                                    th:if="${percentageYesterday != 99}"
+                                    th:text="${#numbers.formatDecimal(percentageYesterday, 0, 2)} + '%'"></span>
+                                <span class="ml-3" th:classappend="${percentageYesterday >= 0 ? 'raise' : 'decrease'}"
+                                    th:if="${percentageYesterday == 99}">99+%</span>
 
                             </div>
                         </div>
@@ -50,15 +70,29 @@
                     <div class="card-body">
                         <div class="dash-widget-header">
                             <div>
-                                <h3 class="card_widget_header" th:text="${#numbers.formatDecimal(revenueWeek, 0, 'POINT', 0, 'COMMA')}">1.400.000 đ</h3>
-                                <h6 class="text-muted">Doanh thu tuần này</h6> </div>
+                                <h3 class="card_widget_header"
+                                    th:text="${#numbers.formatDecimal(revenueWeek, 0, 'POINT', 0, 'COMMA')}">1.400.000 đ
+                                </h3>
+                                <h6 class="text-muted">Doanh thu tuần này</h6>
+                            </div>
                             <div class="ml-auto mt-md-3 mt-lg-0">
                                 <span class="opacity-7 text-muted">
-                                <svg th:if="${percentageLastWeek >= 0}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="green" d="M14 2.75a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-.69l-4.47 4.47a.75.75 0 0 1-1.06 0L8.5 6.56l-4.22 4.22a.75.75 0 1 1-1.06-1.06l4.75-4.75a.75.75 0 0 1 1.06 0l2.47 2.47l3.94-3.94h-.69a.75.75 0 0 1-.75-.75ZM3.75 14a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 .75-.75Zm4.75-2.25a.75.75 0 0 0-1.5 0v5.5a.75.75 0 0 0 1.5 0v-5.5ZM11.75 13a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75Zm4.75-3.25a.75.75 0 0 0-1.5 0v7.5a.75.75 0 0 0 1.5 0v-7.5Z"/></svg>
+                                    <svg th:if="${percentageLastWeek >= 0}" xmlns="http://www.w3.org/2000/svg"
+                                        width="20" height="20" viewBox="0 0 20 20">
+                                        <path fill="green"
+                                            d="M14 2.75a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-.69l-4.47 4.47a.75.75 0 0 1-1.06 0L8.5 6.56l-4.22 4.22a.75.75 0 1 1-1.06-1.06l4.75-4.75a.75.75 0 0 1 1.06 0l2.47 2.47l3.94-3.94h-.69a.75.75 0 0 1-.75-.75ZM3.75 14a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 .75-.75Zm4.75-2.25a.75.75 0 0 0-1.5 0v5.5a.75.75 0 0 0 1.5 0v-5.5ZM11.75 13a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75Zm4.75-3.25a.75.75 0 0 0-1.5 0v7.5a.75.75 0 0 0 1.5 0v-7.5Z" />
+                                    </svg>
 
-                                <svg th:if="${percentageLastWeek < 0}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 14 14"><path fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" d="m1.24.5l11.5 5.23m-2.15.81l2.15-.81l-.8-2.16M1.25 6h1.5a.5.5 0 0 1 .5.5v7H.75v-7a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v5.5h-2.5V8a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v4h-2.5v-4a.5.5 0 0 1 .5-.5Z"/></svg></span>
-                                <span class="ml-3" th:classappend="${percentageLastWeek >= 0 ? 'raise' : 'decrease'}" th:if="${percentageLastWeek != 99}" th:text="${#numbers.formatDecimal(percentageLastWeek, 0, 2)} + '%'"></span>
-                                <span class="ml-3" th:classappend="${percentageLastWeek >= 0 ? 'raise' : 'decrease'}" th:if="${percentageLastWeek == 99}">99+%</span>
+                                    <svg th:if="${percentageLastWeek < 0}" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 14 14">
+                                        <path fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round"
+                                            d="m1.24.5l11.5 5.23m-2.15.81l2.15-.81l-.8-2.16M1.25 6h1.5a.5.5 0 0 1 .5.5v7H.75v-7a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v5.5h-2.5V8a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v4h-2.5v-4a.5.5 0 0 1 .5-.5Z" />
+                                    </svg></span>
+                                <span class="ml-3" th:classappend="${percentageLastWeek >= 0 ? 'raise' : 'decrease'}"
+                                    th:if="${percentageLastWeek != 99}"
+                                    th:text="${#numbers.formatDecimal(percentageLastWeek, 0, 2)} + '%'"></span>
+                                <span class="ml-3" th:classappend="${percentageLastWeek >= 0 ? 'raise' : 'decrease'}"
+                                    th:if="${percentageLastWeek == 99}">99+%</span>
                             </div>
                         </div>
                     </div>
@@ -69,14 +103,28 @@
                     <div class="card-body">
                         <div class="dash-widget-header">
                             <div>
-                                <h3 class="card_widget_header" th:text="${#numbers.formatDecimal(revenueMonth, 0, 'POINT', 0, 'COMMA')}">10</h3>
-                                <h6 class="text-muted">Doanh thu tháng này</h6> </div>
-                            <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"> <svg th:if="${percentageLastMonth >= 0}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="green" d="M14 2.75a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-.69l-4.47 4.47a.75.75 0 0 1-1.06 0L8.5 6.56l-4.22 4.22a.75.75 0 1 1-1.06-1.06l4.75-4.75a.75.75 0 0 1 1.06 0l2.47 2.47l3.94-3.94h-.69a.75.75 0 0 1-.75-.75ZM3.75 14a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 .75-.75Zm4.75-2.25a.75.75 0 0 0-1.5 0v5.5a.75.75 0 0 0 1.5 0v-5.5ZM11.75 13a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75Zm4.75-3.25a.75.75 0 0 0-1.5 0v7.5a.75.75 0 0 0 1.5 0v-7.5Z"/></svg>
+                                <h3 class="card_widget_header"
+                                    th:text="${#numbers.formatDecimal(revenueMonth, 0, 'POINT', 0, 'COMMA')}">10</h3>
+                                <h6 class="text-muted">Doanh thu tháng này</h6>
+                            </div>
+                            <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"> <svg
+                                        th:if="${percentageLastMonth >= 0}" xmlns="http://www.w3.org/2000/svg"
+                                        width="20" height="20" viewBox="0 0 20 20">
+                                        <path fill="green"
+                                            d="M14 2.75a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-.69l-4.47 4.47a.75.75 0 0 1-1.06 0L8.5 6.56l-4.22 4.22a.75.75 0 1 1-1.06-1.06l4.75-4.75a.75.75 0 0 1 1.06 0l2.47 2.47l3.94-3.94h-.69a.75.75 0 0 1-.75-.75ZM3.75 14a.75.75 0 0 1 .75.75v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 .75-.75Zm4.75-2.25a.75.75 0 0 0-1.5 0v5.5a.75.75 0 0 0 1.5 0v-5.5ZM11.75 13a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75Zm4.75-3.25a.75.75 0 0 0-1.5 0v7.5a.75.75 0 0 0 1.5 0v-7.5Z" />
+                                    </svg>
 
-                                <svg th:if="${percentageLastMonth < 0}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 14 14"><path fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" d="m1.24.5l11.5 5.23m-2.15.81l2.15-.81l-.8-2.16M1.25 6h1.5a.5.5 0 0 1 .5.5v7H.75v-7a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v5.5h-2.5V8a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v4h-2.5v-4a.5.5 0 0 1 .5-.5Z"/></svg> </span>
+                                    <svg th:if="${percentageLastMonth < 0}" xmlns="http://www.w3.org/2000/svg"
+                                        width="20" height="20" viewBox="0 0 14 14">
+                                        <path fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round"
+                                            d="m1.24.5l11.5 5.23m-2.15.81l2.15-.81l-.8-2.16M1.25 6h1.5a.5.5 0 0 1 .5.5v7H.75v-7a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v5.5h-2.5V8a.5.5 0 0 1 .5-.5v0Zm5 1.5h1.5a.5.5 0 0 1 .5.5v4h-2.5v-4a.5.5 0 0 1 .5-.5Z" />
+                                    </svg> </span>
 
-                                <span class="ml-3" th:classappend="${percentageLastMonth >= 0 ? 'raise' : 'decrease'}" th:if="${percentageLastMonth != 99}" th:text="${#numbers.formatDecimal(percentageLastMonth, 0, 2)} + '%'"></span>
-                                <span class="ml-3" th:classappend="${percentageLastMonth >= 0 ? 'raise' : 'decrease'}" th:if="${percentageLastMonth == 99}">99+%</span>
+                                <span class="ml-3" th:classappend="${percentageLastMonth >= 0 ? 'raise' : 'decrease'}"
+                                    th:if="${percentageLastMonth != 99}"
+                                    th:text="${#numbers.formatDecimal(percentageLastMonth, 0, 2)} + '%'"></span>
+                                <span class="ml-3" th:classappend="${percentageLastMonth >= 0 ? 'raise' : 'decrease'}"
+                                    th:if="${percentageLastMonth == 99}">99+%</span>
                             </div>
                         </div>
                     </div>
@@ -140,6 +188,38 @@
 
         </div>
 
+        <div class="row mt-4">
+            <div class="col-md-8">
+                <h5>Top sản phẩm theo doanh thu</h5>
+                <div class="d-flex float-right align-items-center mb-2">
+                    <label class="mr-2">Top</label>
+                    <select class="form-select mr-2" id="topN" style="width: 80px;">
+                        <option value="5">Top 5</option>
+                        <option value="10">Top 10</option>
+                    </select>
+                    <label class="mr-2">Tháng</label>
+                    <select class="form-select mr-2" id="topMonth" style="width: 100px;"></select>
+                    <select class="form-select" id="topYear" style="width: 100px;"></select>
+                </div>
+                <div style="width:100%; height: 350px;" class="bg-white p-3">
+                    <canvas id="topProductsRevenueChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h5>Danh sách Top sản phẩm</h5>
+                <table id="topProductsTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Doanh thu</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
         <div class="row">
             <div class="mt-4 col-md-12">
                 <h5>Theo khoảng thời gian</h5>
@@ -154,7 +234,7 @@
 
                     <div class="by-date mr-2">
                         <label class="form-label">Ngày bắt đầu</label>
-                        <input type="date" name="" id="dateStart" class="form-control" >
+                        <input type="date" name="" id="dateStart" class="form-control">
                     </div>
 
                     <div class="by-date mr-2">
@@ -164,7 +244,7 @@
 
                     <div class="by-month mr-2">
                         <label class="form-label">Tháng bắt đầu</label>
-                        <input type="month" name="" id="monthStart" class="form-control" >
+                        <input type="month" name="" id="monthStart" class="form-control">
                     </div>
 
                     <div class="by-month mr-2">
@@ -178,7 +258,14 @@
                     <div class="mt-4">
                         <div class="form-label"></div>
                         <button type="button" id="export" class="btn bg-transparent">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 48 48"><g fill="none" stroke="green" stroke-linecap="round" stroke-width="4"><path stroke-linejoin="round" d="M8 15V6a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v36a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-9"/><path d="M31 15h3m-6 8h6m-6 8h6"/><path stroke-linejoin="round" d="M4 15h18v18H4zm6 6l6 6m0-6l-6 6"/></g></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 48 48">
+                                <g fill="none" stroke="green" stroke-linecap="round" stroke-width="4">
+                                    <path stroke-linejoin="round"
+                                        d="M8 15V6a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v36a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-9" />
+                                    <path d="M31 15h3m-6 8h6m-6 8h6" />
+                                    <path stroke-linejoin="round" d="M4 15h18v18H4zm6 6l6 6m0-6l-6 6" />
+                                </g>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -188,11 +275,11 @@
             </div>
         </div>
 
-<!--        <div class="d-print-none mt-4">-->
-<!--            <div class="float-end">-->
-<!--                <button id="print-btn" class="btn btn-success me-1"><i class="fa fa-print"></i></button>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="d-print-none mt-4">-->
+        <!--            <div class="float-end">-->
+        <!--                <button id="print-btn" class="btn btn-success me-1"><i class="fa fa-print"></i></button>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -247,12 +334,12 @@
             $('#time-category').on('change', function () {
                 var value = $(this).val()
 
-                if(value == 1) {
+                if (value == 1) {
                     $('.by-date').show()
                     $('.by-month').hide()
                 }
 
-                if(value == 2) {
+                if (value == 2) {
                     $('.by-date').hide()
                     $('.by-month').show()
                 }
@@ -282,7 +369,7 @@
                 const plugin = {
                     id: 'customCanvasBackgroundColor',
                     beforeDraw: (chart, args, options) => {
-                        const {ctx} = chart;
+                        const { ctx } = chart;
                         ctx.save();
                         ctx.globalCompositeOperation = 'destination-over';
                         ctx.fillStyle = options.color || '#99ffff';
@@ -331,12 +418,12 @@
                     })
                 }
 
-               function loadChart(labelList, dataList) {
+                function loadChart(labelList, dataList) {
                     const label = `Doanh thu`
-                   let chartStatus = Chart.getChart("revenueDayInMonth"); // <canvas> id
-                   if (chartStatus != undefined) {
-                       chartStatus.destroy();
-                   }
+                    let chartStatus = Chart.getChart("revenueDayInMonth"); // <canvas> id
+                    if (chartStatus != undefined) {
+                        chartStatus.destroy();
+                    }
                     var chart = new Chart($revenueDayInMonth, {
                         type: 'line',
                         data: {
@@ -411,9 +498,9 @@
 
             $('#apply-statistic').on('click', function () {
                 var selectValue = $('#time-category').val()
-                if(selectValue == 1) {
+                if (selectValue == 1) {
                     handleStatisTicFromDate()
-                }else  {
+                } else {
                     handlehandleStatisTicFromMonth()
                 }
             })
@@ -421,7 +508,7 @@
             function handleStatisTicFromDate() {
                 const startDate = $('#dateStart').val()
                 const toDate = $('#dateEnd').val()
-                if(!startDate) {
+                if (!startDate) {
                     Toastify({
                         text: "Vui lòng nhâp ngày bắt đầu",
                         className: "error",
@@ -433,7 +520,7 @@
                     return
                 }
 
-                if(toDate == "") {
+                if (toDate == "") {
                     Toastify({
                         text: "Vui lòng nhâp ngày kết thúc",
                         className: "error",
@@ -445,7 +532,7 @@
                     return;
                 }
 
-                if(startDate >= toDate) {
+                if (startDate >= toDate) {
                     Toastify({
                         text: "Ngày kết thúc phải lớn hơn ngày bắt đầu",
                         className: "error",
@@ -459,10 +546,10 @@
 
                 const timeDifference = new Date(toDate).getTime() - new Date(startDate).getTime();
 
-// Calculate the difference in days
+                // Calculate the difference in days
                 const dayDifference = timeDifference / (1000 * 60 * 60 * 24);
 
-// Check if the difference is within the allowed range (60 days)
+                // Check if the difference is within the allowed range (60 days)
                 if (dayDifference > 60) {
                     Toastify({
                         text: "Khoảng cách giữa ngày bắt đầu và ngày kết thúc không được vượt quá 60 ngày",
@@ -480,7 +567,7 @@
             function handlehandleStatisTicFromMonth() {
                 const startMonth = $('#monthStart').val();
                 const toMonth = $('#monthEnd').val();
-                if(!startMonth) {
+                if (!startMonth) {
                     Toastify({
                         text: "Vui lòng nhâp ngày bắt đầu",
                         className: "error",
@@ -492,7 +579,7 @@
                     return
                 }
 
-                if(!toMonth) {
+                if (!toMonth) {
                     Toastify({
                         text: "Vui lòng nhâp ngày bắt đầu",
                         className: "error",
@@ -519,7 +606,7 @@
                             color: "white"
                         }
                     }).showToast();
-                } else if(monthDifference > 60) {
+                } else if (monthDifference > 60) {
                     Toastify({
                         text: "Khoảng cách giữa các tháng không lớn hơn 5 năm (60 tháng)",
                         className: "error",
@@ -616,7 +703,7 @@
             $('#export').on('click', exportToExcel)
 
             async function exportToExcel() {
-                if($('#time-category').val() == 1) {
+                if ($('#time-category').val() == 1) {
                     /* fetch JSON data and parse */
                     const url = `/api/get-statistic-revenue-day-from-time?fromDate=${$('#dateStart').val()}&toDate=${$('#dateEnd').val()}`;
                     const raw_data = await (await fetch(url)).json();
@@ -624,13 +711,13 @@
                     const worksheet = XLSX.utils.json_to_sheet(raw_data);
                     const workbook = XLSX.utils.book_new();
                     XLSX.utils.book_append_sheet(workbook, worksheet, "SanPham");
-                    const heading =[
+                    const heading = [
                         ["Ngày", "Doanh thu"]
                     ]
                     /* fix headers */
-                    XLSX.utils.sheet_add_aoa(worksheet,heading , {origin: "A1"});
+                    XLSX.utils.sheet_add_aoa(worksheet, heading, { origin: "A1" });
                     /* create an XLSX file and try to save to Presidents.xlsx */
-                    XLSX.writeFile(workbook, `thong-ke-doanh-thu_${$('#dateStart').val()}-${$('#dateEnd').val()}.xlsx`, {compression: true});
+                    XLSX.writeFile(workbook, `thong-ke-doanh-thu_${$('#dateStart').val()}-${$('#dateEnd').val()}.xlsx`, { compression: true });
                 }
                 else {
 
@@ -656,7 +743,7 @@
             const plugin = {
                 id: 'customCanvasBackgroundColor',
                 beforeDraw: (chart, args, options) => {
-                    const {ctx} = chart;
+                    const { ctx } = chart;
                     ctx.save();
                     ctx.globalCompositeOperation = 'destination-over';
                     ctx.fillStyle = options.color || '#99ffff';
@@ -664,7 +751,102 @@
                     ctx.restore();
                 }
             };
+
+            // Top products by revenue chart and table
+            document.addEventListener("DOMContentLoaded", function () {
+                // Add controls for top products
+                var topMonthSelect = $('#topMonth');
+                var topYearSelect = $('#topYear');
+                var topNSelect = $('#topN');
+
+                if (topMonthSelect.length) {
+                    // Populate months and years if not pre-populated
+                    for (var m = 1; m <= 12; m++) {
+                        var option = $('<option></option>').attr('value', m).text(m);
+                        topMonthSelect.append(option);
+                    }
+                }
+                if (topYearSelect.length) {
+                    var currentYear = new Date().getFullYear();
+                    for (var y = currentYear; y >= currentYear - 6; y--) {
+                        var opt = $('<option></option>').attr('value', y).text(y);
+                        topYearSelect.append(opt);
+                    }
+                }
+
+                if ($('#topMonth').length && $('#topYear').length) {
+                    $('#topMonth').val(new Date().getMonth() + 1);
+                    $('#topYear').val(new Date().getFullYear());
+                }
+
+                function callApiGetTopProductsRevenue() {
+                    var month = $('#topMonth').val();
+                    var year = $('#topYear').val();
+                    var topN = $('#topN').val();
+                    if (!month || !year) return;
+                    $.ajax({
+                        type: 'GET',
+                        dataType: 'json',
+                        url: `/api/get-top-products-revenue?month=${month}&year=${year}&topN=${topN}`,
+                        success: function (data) {
+                            var labels = [];
+                            var values = [];
+                            data.forEach(item => {
+                                labels.push(item.name);
+                                values.push(Number(item.revenue) || 0);
+                            });
+                            loadTopProductsChart(labels, values, month, year, topN);
+                            populateTopProductsTable(data);
+                        }
+                    })
+                }
+
+                function loadTopProductsChart(labels, values, month, year, topN) {
+                    let chartStatus = Chart.getChart('topProductsRevenueChart');
+                    if (chartStatus) chartStatus.destroy();
+                    const ctx = $('#topProductsRevenueChart');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: `Top ${topN} sản phẩm theo doanh thu ${month}/${year}`,
+                                data: values,
+                                backgroundColor: '#38a169'
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            plugins: {
+                                title: { display: true, text: `Top ${topN} sản phẩm theo doanh thu ${month}/${year}` }
+                            }
+                        }
+                    });
+                }
+
+                function populateTopProductsTable(data) {
+                    var tbody = $('#topProductsTable tbody');
+                    tbody.empty();
+                    data.forEach(function (item, index) {
+                        var revenue = Number(item.revenue) || 0;
+                        var formatted = revenue.toLocaleString('vi-VN');
+                        var row = `<tr><td>${index + 1}</td><td>${item.name}</td><td>${formatted}</td></tr>`;
+                        tbody.append(row);
+                    });
+                }
+
+                // Bind events
+                $(document).on('change', '#topN, #topMonth, #topYear', function () {
+                    callApiGetTopProductsRevenue();
+                });
+
+                // If controls exist, initialize
+                if ($('#topMonth').length && $('#topYear').length && $('#topN').length) {
+                    callApiGetTopProductsRevenue();
+                }
+            });
         </script>
     </div>
 </body>
+
 </html>

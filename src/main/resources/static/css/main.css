@@ -379,6 +379,30 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   -moz-transition: all 0.4s;
 }
 
+/* User request: menu links should be black and bold (uppercase) like the provided screenshot */
+.header-v4 .main-menu>li>a {
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+
+.header-v4 .main-menu>li>a:hover {
+  color: #000 !important;
+}
+
+/* Ensure mobile menu also uses black, bold, uppercase text when in header-v4 */
+.header-v4 .menu-mobile .main-menu-m>li>a,
+.header-v4 .menu-mobile .main-menu-m>li {
+  color: #000 !important;
+}
+
+.header-v4 .menu-mobile .main-menu-m>li>a {
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  background-color: transparent !important;
+  /* Make sure background not forcing white text */
+}
+
 .header-v3 .main-menu>li>a {
   color: #fff;
 }
@@ -3368,9 +3392,12 @@ input.num-product::-webkit-inner-spin-button {
    Make product name and price under images more visible
    ========================= */
 .block2 .block2-txt-child1 .stext-104 {
-  font-weight: 700; /* stronger weight for product name */
-  color: #222222; /* darker color for contrast */
-  font-size: 14px; /* slightly larger for readability */
+  font-weight: 700;
+  /* stronger weight for product name */
+  color: #222222;
+  /* darker color for contrast */
+  font-size: 14px;
+  /* slightly larger for readability */
   line-height: 1.2;
   display: block;
 }
@@ -3380,8 +3407,10 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .block2 .block2-txt-child1 .stext-105 {
-  font-weight: 700; /* make price bold */
-  color: #1d1d1d; /* very dark price color */
+  font-weight: 700;
+  /* make price bold */
+  color: #1d1d1d;
+  /* very dark price color */
   font-size: 15px;
   margin-top: 4px;
   display: block;
@@ -3401,6 +3430,7 @@ input.num-product::-webkit-inner-spin-button {
   .block2 .block2-txt-child1 .stext-104 {
     font-size: 13px;
   }
+
   .block2 .block2-txt-child1 .stext-105 {
     font-size: 14px;
   }

@@ -10,14 +10,16 @@ public interface StatisticService {
     List<MonthInYearStatistic> getMonthInYearStatistic(String year);
 
     List<MonthInYearStatistic2> getMonthlyRevenue(String fromDate, String toDate);
+
     List<BestSellerProduct> getBestSellerProduct(String fromDate, String toDate);
 
     List<BestSellerProduct> getBestSellerProductAll();
-
 
     List<DayInMonthStatistic2> getDailyRevenue2(String startDate, String endDate);
 
     List<ProductStatistic> getStatisticProductInTime(String fromDate, String toDate);
 
     List<OrderStatistic> getStatisticOrder();
+
+    List<ProductStatistic> getTopProductsByRevenue(String month, String year, int topN);
 }

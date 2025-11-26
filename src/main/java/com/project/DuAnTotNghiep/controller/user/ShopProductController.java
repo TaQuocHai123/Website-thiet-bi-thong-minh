@@ -25,7 +25,9 @@ public class ShopProductController {
     private final ColorService colorService;
     private final ProductDetailService productDetailService;
     private final CategoryService categoryService;
-    public ShopProductController(ProductService productService, SizeService sizeService, ColorService colorService, ProductDetailService productDetailService, CategoryService categoryService) {
+
+    public ShopProductController(ProductService productService, SizeService sizeService, ColorService colorService,
+            ProductDetailService productDetailService, CategoryService categoryService) {
         this.productService = productService;
         this.sizeService = sizeService;
         this.colorService = colorService;
@@ -34,26 +36,24 @@ public class ShopProductController {
     }
 
     @GetMapping("/getproduct")
-    public String getProduct(Model model, SearchProductDto searchProductDto,  @PageableDefault(size = 18) Pageable pageable) {
+    public String getProduct(Model model, SearchProductDto searchProductDto,
+            @PageableDefault(size = 18) Pageable pageable) {
 
         List<Category> categories = categoryService.getAll();
         Page<ProductDto> products = productService.searchProduct(searchProductDto, pageable);
 
-
-        if(searchProductDto != null) {
+        if (searchProductDto != null) {
             int pageNumber = pageable.getPageNumber();
             int pageSize = pageable.getPageSize();
             Sort sort = pageable.getSort();
-//            String url = "&size=" + pageSize;
+            // String url = "&size=" + pageSize;
             String url = "";
 
-
-            if(searchProductDto.getKeyword() != null) {
+            if (searchProductDto.getKeyword() != null) {
                 url += "&keyword=" + searchProductDto.getKeyword();
             }
 
-
-            if(sort.isSorted()) {
+            if (sort.isSorted()) {
                 List<Sort.Order> orders = sort.toList();
 
                 // Tạo một danh sách để lưu trữ chuỗi sắp xếp cho mỗi trường
@@ -76,18 +76,18 @@ public class ShopProductController {
                 searchProductDto.setSort(String.join(",", sortStrings));
             }
 
-            if(searchProductDto.getMinPrice() != null) {
+            if (searchProductDto.getMinPrice() != null) {
                 url += "&minPrice=" + searchProductDto.getMinPrice();
             }
-            if(searchProductDto.getMinPrice() != null) {
+            if (searchProductDto.getMinPrice() != null) {
                 url += "&maxPrice=" + searchProductDto.getMaxPrice();
             }
-            if(searchProductDto.getCategoryId() != null) {
+            if (searchProductDto.getCategoryId() != null) {
                 url += "&category=" + searchProductDto.getCategoryId().stream()
                         .map(Object::toString) // Chuyển đổi mỗi số thành chuỗi
                         .collect(Collectors.joining(","));
             }
-            if(searchProductDto.getGender() != null) {
+            if (searchProductDto.getGender() != null) {
                 url += "&gender=" + searchProductDto.getGender();
             }
             model.addAttribute("url", url);
@@ -99,18 +99,17 @@ public class ShopProductController {
         return "user/shop-product";
     }
 
-
-//    private ProductDto mapToDto(Product product) {
-//        ProductDto productDto = new ProductDto();
-//        productDto.setId(product.getId());
-//        productDto.setName(product.getName());
-//        productDto.setCode(product.getCode());
-//        productDto.setBrandId(product.getBrand().getId());
-//        productDto.setMaterialId(product.getMaterial().getId());
-//        productDto.setCreateDate(product.getCreateDate());
-//        productDto.setUpdatedDate(product.getUpdatedDate());
-//        productDto.setImageUrl(product.getImage().get(0).getLink());
-//    }
+    // private ProductDto mapToDto(Product product) {
+    // ProductDto productDto = new ProductDto();
+    // productDto.setId(product.getId());
+    // productDto.setName(product.getName());
+    // productDto.setCode(product.getCode());
+    // productDto.setBrandId(product.getBrand().getId());
+    // productDto.setMaterialId(product.getMaterial().getId());
+    // productDto.setCreateDate(product.getCreateDate());
+    // productDto.setUpdatedDate(product.getUpdatedDate());
+    // productDto.setImageUrl(product.getImage().get(0).getLink());
+    // }
 
     @GetMapping("/getproduct/search")
     public String getProductSearch(Model model, Pageable pageable, SearchProductDto searchDto) {
@@ -119,18 +118,29 @@ public class ShopProductController {
         return "user/shop-product";
     }
 
-    @GetMapping("/product-detail/{productCode}")
-    public String getProductDetail(Model model, @PathVariable String productCode) {
-        Product product = productService.getProductByCode(productCode);
-        if(product == null) {
-            return "/error/404";
+    @GetMapping("/product-detail/{productId}")
+    public String getProductDetail(Model model, @PathVariable Long productId) {
+        Product product = productService.getProductById(productId).orElse(null);
+        if (product == null) {
+            return "error/404";
         }
         model.addAttribute("product", product);
         return "user/product-detail";
     }
 
+    // Backwards compatibility: accept old link format with productCode and redirect
+    // to new ID-based route
+    @GetMapping("/product-detail/code/{productCode}")
+    public String redirectProductByCode(@PathVariable String productCode) {
+        Product product = productService.getProductByCode(productCode);
+        if (product == null) {
+            return "error/404";
+        }
+        return "redirect:/product-detail/" + product.getId();
+    }
+
     @ResponseBody
-        @GetMapping("/productDetails/{productId}/product")
+    @GetMapping("/productDetails/{productId}/product")
     public List<ProductDetailDto> getProductDetailJson(@PathVariable Long productId) throws NotFoundException {
         List<ProductDetailDto> productDetails = productDetailService.getByProductId(productId);
         return productDetails;

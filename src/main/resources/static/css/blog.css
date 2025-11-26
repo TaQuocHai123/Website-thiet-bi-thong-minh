@@ -265,3 +265,68 @@
         height: auto;
     }
 }
+
+/* Newest posts on homepage */
+.newest-posts {
+    margin-top: 30px;
+}
+
+.newest-posts .stext-301 {
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.newest-posts .stext-301:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #39b54a;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.newest-posts .post-card {
+    padding: 10px 15px;
+}
+
+.newest-posts .post-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Debug styles to help verify section renders (temporary) */
+.newest-posts {
+    border: 3px dashed rgba(255, 0, 0, 0.6);
+}
+
+.dbg-newest-count {
+    display: inline-block;
+    background: #e74c3c;
+    color: #fff;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 3px;
+    margin-left: 12px;
+    font-size: 13px;
+}
+
+.newest-posts .post-card h5 {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 6px;
+}
+
+.newest-posts .post-date {
+    color: #999;
+    font-size: 13px;
+}
+
+@media (max-width: 767px) {
+    .newest-posts .post-card img {
+        height: 90px;
+    }
+}

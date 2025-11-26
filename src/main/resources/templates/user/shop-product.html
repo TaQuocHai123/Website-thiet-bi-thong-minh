@@ -196,7 +196,7 @@
                             <div class="block2-pic hov-img0" style="height: 250px">
                                 <!--                            <img th:src="${product.image.get(0).link}" alt="IMG-PRODUCT" style="height: 100%">-->
                                 <img th:src="${product.imageUrl}" alt="IMG-PRODUCT" style="height: 100%; width: 100%">
-                                <a th:href="@{'/product-detail/' + ${product.code}}"
+                                <a th:href="@{'/product-detail/' + ${product.id}}"
                                     class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 "
                                     th:data-product-id="${product.id}">
                                     Chi tiết
@@ -205,7 +205,7 @@
 
                             <div class="block2-txt flex-w flex-t p-t-14">
                                 <div class="block2-txt-child1 flex-col-l ">
-                                    <a th:href="@{'/product-detail/' + ${product.code}}"
+                                    <a th:href="@{'/product-detail/' + ${product.id}}"
                                         class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"
                                         th:text="${product.name}">
 
