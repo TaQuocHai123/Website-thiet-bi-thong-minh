@@ -10,10 +10,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DiscountCodeRepository extends JpaRepository<DiscountCode, Long>, JpaSpecificationExecutor<DiscountCode> {
+public interface DiscountCodeRepository
+        extends JpaRepository<DiscountCode, Long>, JpaSpecificationExecutor<DiscountCode> {
     boolean existsByCode(String code);
 
     @Query(value = "SELECT * FROM discount_code WHERE status = 1 AND start_date < GETDATE() AND end_date > GETDATE() AND delete_flag = 'false' AND maximum_usage > 0", nativeQuery = true)
 
     Page<DiscountCode> findAllAvailableValid(Pageable pageable);
+
+    java.util.List<DiscountCode> findAllByStatusAndEndDateBefore(int status, java.util.Date date);
 }

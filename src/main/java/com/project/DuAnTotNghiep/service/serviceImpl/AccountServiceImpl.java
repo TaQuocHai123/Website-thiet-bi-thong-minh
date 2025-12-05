@@ -57,7 +57,6 @@ public class AccountServiceImpl implements AccountService {
 
         List<Object[]> results = accountRepository.getMonthlyAccountStatistics(startDate, endDate);
 
-
         for (Object[] result : results) {
             String month = (String) result[0];
             Integer count = ((Number) result[1]).intValue();
@@ -102,9 +101,10 @@ public class AccountServiceImpl implements AccountService {
     public AccountDto updateProfile(AccountDto accountDto) {
         Account account = UserLoginUtil.getCurrentLogin();
         Customer customer = customerRepository.findByAccount_Id(account.getId());
-        if(!accountDto.getPhoneNumber().trim().equals(customer.getPhoneNumber())) {
-            if(customerRepository.existsByPhoneNumber(accountDto.getPhoneNumber())) {
-                throw new ShopApiException(HttpStatus.BAD_REQUEST, "Số điện thoại " + accountDto.getPhoneNumber() + " đã được đăng ký");
+        if (!accountDto.getPhoneNumber().trim().equals(customer.getPhoneNumber())) {
+            if (customerRepository.existsByPhoneNumber(accountDto.getPhoneNumber())) {
+                throw new ShopApiException(HttpStatus.BAD_REQUEST,
+                        "Số điện thoại " + accountDto.getPhoneNumber() + " đã được đăng ký");
             }
         }
         customer.setPhoneNumber(accountDto.getPhoneNumber());
@@ -141,12 +141,17 @@ public class AccountServiceImpl implements AccountService {
         accountDto.setName(account.getCustomer().getName());
         accountDto.setPhoneNumber(account.getCustomer().getPhoneNumber());
         List<AddressShippingDto> addressShippingDtos = new ArrayList<>();
-        List<AddressShipping> addressShippingList = addressShippingRepository.findAllByCustomer_Account_Id(account.getId());
-        for (AddressShipping addressShipping:
-             addressShippingList) {
+        List<AddressShipping> addressShippingList = addressShippingRepository
+                .findAllByCustomer_Account_Id(account.getId());
+        for (AddressShipping addressShipping : addressShippingList) {
             AddressShippingDto addressShippingDto = new AddressShippingDto();
             addressShippingDto.setId(addressShipping.getId());
             addressShippingDto.setAddress(addressShipping.getAddress());
+            addressShippingDto.setLatitude(addressShipping.getLatitude());
+            addressShippingDto.setLongitude(addressShipping.getLongitude());
+            addressShippingDto.setProvinceId(addressShipping.getProvinceId());
+            addressShippingDto.setDistrictId(addressShipping.getDistrictId());
+            addressShippingDto.setWardCode(addressShipping.getWardCode());
             addressShippingDtos.add(addressShippingDto);
         }
         accountDto.setAddressShippingList(addressShippingDtos);

@@ -10,11 +10,23 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class ConfigVNPay {
-    public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_ReturnUrl = "http://localhost:8080/payment-result";
-    public static String vnp_TmnCode = "WSKPMBP7";
-    public static String secretKey = "YXVDLHFPDPTUKXVYXDCAMLIPMBQOXWUV";
-    public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
+    public static String vnp_PayUrl = (System.getenv("VNP_PAY_URL") != null) ? System.getenv("VNP_PAY_URL")
+            : System.getProperty("vnpay.vnp_PayUrl", "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html");
+    public static String vnp_ReturnUrl = (System.getenv("VNP_RETURN_URL") != null) ? System.getenv("VNP_RETURN_URL")
+            : System.getProperty("vnpay.vnp_ReturnUrl", "http://localhost:8080/payment-result");
+    public static String vnp_TmnCode = (System.getenv("VNP_TMN_CODE") != null) ? System.getenv("VNP_TMN_CODE")
+            : System.getProperty("vnpay.vnp_TmnCode", "WSKPMBP7");
+    public static String secretKey = (System.getenv("VNP_SECRET_KEY") != null) ? System.getenv("VNP_SECRET_KEY")
+            : System.getProperty("vnpay.secretKey", "YXVDLHFPDPTUKXVYXDCAMLIPMBQOXWUV");
+    public static String vnp_ApiUrl = (System.getenv("VNP_API_URL") != null) ? System.getenv("VNP_API_URL")
+            : System.getProperty("vnpay.vnp_ApiUrl", "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction");
+    public static String vnp_NotifyUrl = (System.getenv("VNP_NOTIFY_URL") != null) ? System.getenv("VNP_NOTIFY_URL")
+            : System.getProperty("vnpay.vnp_NotifyUrl", "http://localhost:8080/api/payment/notify");
+    public static String local_SuccessRedirectUrl = (System.getenv("VNP_LOCAL_SUCCESS_URL") != null)
+            ? System.getenv("VNP_LOCAL_SUCCESS_URL")
+            : System.getProperty("vnpay.vnp_LocalSuccessUrl", "http://localhost:8080/");
+    public static boolean allowReturnOverride = Boolean
+            .parseBoolean(System.getProperty("vnpay.allowReturnOverride", "false"));
     public static String vnp_Version = "2.1.0";
     public static String vnp_Command = "pay";
 
@@ -54,7 +66,7 @@ public class ConfigVNPay {
         return digest;
     }
 
-    //Util for VNPAY
+    // Util for VNPAY
     public static String hashAllFields(Map fields) {
         List fieldNames = new ArrayList(fields.keySet());
         Collections.sort(fieldNames);
@@ -72,7 +84,7 @@ public class ConfigVNPay {
                 sb.append("&");
             }
         }
-        return hmacSHA512(secretKey,sb.toString());
+        return hmacSHA512(secretKey, sb.toString());
     }
 
     public static String hmacSHA512(final String key, final String data) {

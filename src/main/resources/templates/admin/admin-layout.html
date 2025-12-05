@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-    lang="en">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="en">
 
 <head th:replace="fragments-admin::page_head('Admin page')">
     <script>
@@ -72,7 +70,8 @@
                     </li>
                     <!-- Quản lý bài viết -->
                     <li class="menu-item-has-children dropdown" sec:authorize="hasRole('ADMIN')">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-newspaper"></i>Quản lý bài viết</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"> <i class="menu-icon fa fa-newspaper"></i>Quản lý bài viết</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-plus"></i><a th:href="@{/admin/post-create}">Tạo bài viết</a></li>
                             <li><i class="fa fa-eye"></i><a th:href="@{/admin/post-list}">Xem bài viết</a></li>
@@ -129,6 +128,8 @@
                             <li><i class="menu-icon fa fa-paper-plane"></i><a th:href="@{/profile}">Cập nhật thông
                                     tin</a>
                             </li>
+                            <li><i class="menu-icon fa fa-credit-card"></i><a th:href="@{/admin/vnpay-check}">Kiểm tra
+                                    VNPay</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -156,15 +157,16 @@
 
                     <div class="user-menu">
                         <a class="nav-link" th:href="@{/}"><i class="fa fa-user"></i> Trang khách</a>
-                    <!-- Quản lý bài viết (dropdown) -->
-                    <li class="menu-item-has-children dropdown" sec:authorize="hasRole('ADMIN')">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-newspaper"></i>Quản lý bài viết</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fas fa-edit"></i><a th:href="@{/admin/posts/create}">Tạo bài viết</a></li>
-                            <li><i class="fas fa-eye"></i><a th:href="@{/admin/posts}">Xem bài viết</a></li>
-                        </ul>
-                    </li>
-            </div>
+                        <!-- Quản lý bài viết (dropdown) -->
+                        <li class="menu-item-has-children dropdown" sec:authorize="hasRole('ADMIN')">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false"> <i class="menu-icon fa fa-newspaper"></i>Quản lý bài viết</a>
+                            <ul class="sub-menu children dropdown-menu">
+                                <li><i class="fas fa-edit"></i><a th:href="@{/admin/posts/create}">Tạo bài viết</a></li>
+                                <li><i class="fas fa-eye"></i><a th:href="@{/admin/posts}">Xem bài viết</a></li>
+                            </ul>
+                        </li>
+                    </div>
         </header>
 
         <!--    <div class="breadcrumbs">-->

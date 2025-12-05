@@ -10,4 +10,9 @@ import lombok.NoArgsConstructor;
 public class AddressShippingDto {
     private Long id;
     private String address;
+    private Double latitude;
+    private Double longitude;
+    private Integer provinceId;
+    private Integer districtId;
+    private String wardCode;
 }

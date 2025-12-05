@@ -9,14 +9,19 @@ import java.util.List;
 
 @Service
 public interface CartService {
-//    Page<Cart> carts(Pageable pageable);
+    // Page<Cart> carts(Pageable pageable);
     List<CartDto> getAllCart();
+
     List<CartDto> getAllCartByAccountId();
+
     void addToCart(CartDto cartDto) throws NotFoundException;
 
     void updateCart(CartDto cartDto) throws NotFoundException;
 
-    void orderUser(OrderDto orderDto);
+    String orderUser(OrderDto orderDto);
+
+    String orderUserFromPayload(OrderDto orderDto, Long accountId);
+
     OrderDto orderAdmin(OrderDto orderDto);
 
     void deleteCart(Long id);

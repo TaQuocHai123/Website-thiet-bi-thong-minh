@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Waiting for payment</title>
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <h3 id="title">Đang xử lý thanh toán…</h3>
+                        <p id="msg">Vui lòng chờ. Trang này tự động cập nhật trạng thái giao dịch.</p>
+                        <div id="spinner" class="spinner-border text-primary" role="status"></div>
+                        <div id="result" style="display:none">
+                            <h4 id="resultText" class="text-success">Thanh toán thành công</h4>
+                            <p id="resultInfo"></p>
+                            <a class="btn btn-primary" href="/">Trở về trang chủ</a>
+                        </div>
+                        <p class="mt-3 text-muted">Mã giao dịch: <span id="txnRef"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            function getParam(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+            const vnpTxn = getParam('vnp_TxnRef') || getParam('txnRef');
+            $('#txnRef').text(vnpTxn || 'N/A');
+            if (!vnpTxn) {
+                $('#title').text('Mã giao dịch không hợp lệ');
+                $('#msg').text('Vui lòng kiểm tra lại thông tin');
+                $('#spinner').hide();
+                return;
+            }
+            function checkStatus() {
+                $.ajax({
+                    url: '/api/payment/status',
+                    method: 'GET',
+                    data: { vnp_TxnRef: vnpTxn },
+                    success: function (data) {
+                        if (data && data.ok) {
+                            if (data.status === 'success') {
+                                $('#spinner').hide();
+                                $('#result').show();
+                                $('#resultText').text('Thanh toán thành công');
+                                $('#resultInfo').text('Mã giao dịch: ' + data.orderId + '\nSố tiền: ' + data.amount);
+                            } else if (data.status === 'pending') {
+                                $('#title').text('Giao dịch đang chờ');
+                                $('#msg').text('Vui lòng chờ, hệ thống đang xác nhận thanh toán...');
+                                setTimeout(checkStatus, 3000);
+                            } else {
+                                $('#title').text('Không tìm thấy giao dịch');
+                                $('#msg').text(data.message || 'Không tìm thấy giao dịch');
+                                $('#spinner').hide();
+                            }
+                        } else {
+                            $('#title').text('Lỗi');
+                            $('#msg').text(data.message || 'Lỗi khi truy vấn trạng thái');
+                            $('#spinner').hide();
+                        }
+                    },
+                    error: function (xhr) {
+                        $('#title').text('Lỗi liên lạc');
+                        $('#msg').text('Không thể truy vấn trạng thái thanh toán.');
+                        $('#spinner').hide();
+                    }
+                });
+            }
+            // Initial check
+            checkStatus();
+            // Periodic check every 3 seconds only while pending
+        });
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,5 @@
 package com.project.DuAnTotNghiep.dto.Payment;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,4 +13,5 @@ public class PaymentDto {
     private String status;
     private String message;
     private String url;
+    private String info;
 }

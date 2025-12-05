@@ -27,4 +27,8 @@ public class Payment {
     @OneToOne
     @JoinColumn(name = "bill_id")
     private Bill bill;
+
+    @Lob
+    @Column(name = "order_payload")
+    private String orderPayload;
 }

@@ -278,6 +278,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   height: 84px;
   top: 40px;
   left: 0px;
+  overflow: visible;
+  /* Allow diacritics to render beyond container bounds if needed */
 
   -webkit-transition: height 0.3s, background-color 0.3s;
   -o-transition: height 0.3s, background-color 0.3s;
@@ -358,6 +360,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   display: -ms-flexbox;
   display: flex;
   align-items: center;
+  width: 100%;
+  /* allow alignment within the main menu (push specific items right) */
 }
 
 .main-menu>li {
@@ -365,6 +369,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   position: relative;
   padding: 20px 10px 20px 0px;
   margin: 0px 4px 0px 14px;
+}
+
+/* Push the contact link to the right edge of the header's menu */
+.header-v4 .main-menu>li.contact {
+  margin-left: auto;
 }
 
 .main-menu>li>a {
@@ -384,6 +393,18 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   color: #000 !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
+  /* Improve diacritic rendering and avoid clipped accents */
+  line-height: 1.4 !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  overflow: visible !important;
+  -webkit-font-smoothing: antialiased !important;
+  /* Improve glyph rendering on WebKit */
+  -moz-osx-font-smoothing: grayscale !important;
+  /* Improve glyph rendering on Firefox/macOS */
+  text-rendering: optimizeLegibility !important;
+  /* Add fallbacks to avoid fonts without proper Vietnamese glyphs */
+  font-family: 'Poppins', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
 }
 
 .header-v4 .main-menu>li>a:hover {
@@ -401,6 +422,14 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   text-transform: uppercase !important;
   background-color: transparent !important;
   /* Make sure background not forcing white text */
+  line-height: 1.5 !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  overflow: visible !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+  font-family: 'Poppins', 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
 }
 
 .header-v3 .main-menu>li>a {
@@ -474,6 +503,123 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   opacity: 1;
 }
 
+/* Specific style for `Chính sách` drop-down: white background and wider to prevent wrapping */
+.header-v4 .main-menu>li.policy>.sub-menu {
+  background-color: #2ecc71 !important;
+  /* brighter green */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  min-width: 420px;
+  /* widen the panel so items don't wrap */
+  border-radius: 4px;
+}
+
+.header-v4 .main-menu>li.policy>.sub-menu a {
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  padding-left: 20px;
+  /* a bit more padding for clarity */
+  white-space: nowrap;
+  /* avoid wrapping */
+  overflow: visible;
+  /* ensure diacritics show */
+}
+
+.header-v4 .main-menu>li.policy>.sub-menu>li>a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.header-v4 .main-menu>li.policy>.sub-menu>li:hover>a {
+  color: #000 !important;
+  background-color: #28b861 !important;
+  /* slightly darker green */
+}
+
+.header-v4 .main-menu>li.policy>.sub-menu a:hover {
+  background-color: #28b861 !important;
+  /* slightly darker green on hover */
+}
+
+.header-v4 .main-menu>li.policy>a {
+  color: #000 !important;
+}
+
+/* Make the caret on desktop for policy */
+.header-v4 .main-menu>li.policy>a::after {
+  content: '\f0d7';
+  /* font-awesome down */
+  font-family: FontAwesome;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+.header-v3 .main-menu>li.policy>a::after {
+  content: '\f0d7';
+  font-family: FontAwesome;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+/* Mobile policy dropdown: keep white background, allow wrapping on mobile */
+.header-v4 .menu-mobile .sub-menu-m {
+  background-color: #2ecc71 !important;
+  /* mobile brighter green */
+}
+
+.header-v4 .menu-mobile .sub-menu-m a {
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  white-space: normal;
+  /* allow wrapping to adapt to small screens */
+}
+
+.header-v4 .menu-mobile .sub-menu-m a:hover {
+  background-color: #28b861 !important;
+  color: #000 !important;
+}
+
+/* Also support header-v3 pages like home-03 */
+.header-v3 .main-menu>li.policy>.sub-menu {
+  background-color: #2ecc71 !important;
+  /* brighter green */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  min-width: 420px;
+  border-radius: 4px;
+}
+
+.header-v3 .main-menu>li.policy>.sub-menu a {
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  white-space: nowrap;
+}
+
+.header-v3 .main-menu>li.policy>.sub-menu>li>a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.header-v3 .main-menu>li.policy>.sub-menu>li:hover>a {
+  color: #000 !important;
+  background-color: #28b861 !important;
+}
+
+.header-v3 .menu-mobile .sub-menu-m {
+  background-color: #2ecc71 !important;
+}
+
+.header-v3 .menu-mobile .sub-menu-m a {
+  color: #000 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+
+.header-v3 .menu-mobile .sub-menu-m a:hover {
+  background-color: #28b861 !important;
+}
+
 .sub-menu li:hover>.sub-menu {
   visibility: visible;
   opacity: 1;
@@ -481,6 +627,15 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 .sub-menu li:hover {
   background-color: transparent;
+}
+
+/* Responsive adjustments: shrink min-width on smaller screens */
+@media (max-width: 1024px) {
+
+  .header-v4 .main-menu>li.policy>.sub-menu,
+  .header-v3 .main-menu>li.policy>.sub-menu {
+    min-width: 300px;
+  }
 }
 
 .sub-menu>li:hover>a {

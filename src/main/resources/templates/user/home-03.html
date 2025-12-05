@@ -60,6 +60,16 @@
                             <li>
                                 <a th:href="@{/getproduct}">Shop</a>
                             </li>
+                            <li class="has-sub policy">
+                                <a href="#">Chính sách</a>
+                                <ul class="sub-menu">
+                                    <li><a th:href="@{/policy-ship}">Chính sách vận chuyển</a></li>
+                                    <li><a th:href="@{/policy-return}">Chính sách đổi trả</a></li>
+                                    <li><a th:href="@{/policy-check}">Chính sách kiểm hàng</a></li>
+                                    <li><a th:href="@{/policy-pay}">Phương thức thanh toán</a></li>
+                                    <li><a th:href="@{/policy-complaint}">Chính sách xử lý khiếu nại</a></li>
+                                </ul>
+                            </li>
                             <li>
                                 <a th:href="@{/getshop}">Features</a>
                             </li>
@@ -125,6 +135,19 @@
                         <li><a th:href="@{/}">Homepage 1</a></li>
                         <li><a th:href="@{/home-02}">Homepage 2</a></li>
                         <li><a th:href="@{/home-03}">Homepage 3</a></li>
+                    </ul>
+                    <span class="arrow-main-menu-m">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                </li>
+                <li>
+                    <a href="#">Chính sách</a>
+                    <ul class="sub-menu-m">
+                        <li><a th:href="@{/policy-ship}">Chính sách vận chuyển</a></li>
+                        <li><a th:href="@{/policy-return}">Chính sách đổi trả</a></li>
+                        <li><a th:href="@{/policy-check}">Chính sách kiểm hàng</a></li>
+                        <li><a th:href="@{/policy-pay}">Phương thức thanh toán</a></li>
+                        <li><a th:href="@{/policy-complaint}">Chính sách xử lý khiếu nại</a></li>
                     </ul>
                     <span class="arrow-main-menu-m">
                         <i class="fa fa-angle-right" aria-hidden="true"></i>

@@ -12,4 +12,9 @@ public class AddressShippingDtoAdmin {
     private Long id;
     private String address;
     private Long customerId;
+    private Double latitude;
+    private Double longitude;
+    private Integer provinceId;
+    private Integer districtId;
+    private String wardCode;
 }

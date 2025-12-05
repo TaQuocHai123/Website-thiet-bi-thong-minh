@@ -171,3 +171,33 @@
 .bg3 .container {
   padding-bottom: 12px;
 }
+
+/* Layout helper to keep footer at bottom */
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.page-content {
+  flex: 1 0 auto;
+}
+
+/* Ensure footer areas don't shrink and always follow content */
+footer.bg3 {
+  flex-shrink: 0;
+}
+
+.footer-bottom {
+  flex-shrink: 0;
+}

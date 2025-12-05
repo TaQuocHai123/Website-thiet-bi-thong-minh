@@ -1,6 +1,5 @@
 package com.project.DuAnTotNghiep.controller.user;
 
-
 import com.project.DuAnTotNghiep.dto.AddressShipping.AddressShippingDto;
 import com.project.DuAnTotNghiep.dto.Cart.CartDto;
 import com.project.DuAnTotNghiep.dto.DiscountCode.DiscountCodeDto;
@@ -11,6 +10,8 @@ import com.project.DuAnTotNghiep.service.CartService;
 import com.project.DuAnTotNghiep.service.DiscountCodeService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.beans.factory.annotation.Value;
+import com.project.DuAnTotNghiep.ghn.GhnConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +27,18 @@ public class ShoppingCartController {
     private final DiscountCodeService discountCodeService;
 
     private final AddressShippingService addressShippingService;
+    private final GhnConfig ghnConfig;
+    @Value("${maps.api.key:}")
+    private String mapsApiKey;
 
-    public ShoppingCartController(CartService cartService, BillService billService, DiscountCodeService discountCodeService, AddressShippingService addressShippingService) {
+    public ShoppingCartController(CartService cartService, BillService billService,
+            DiscountCodeService discountCodeService, AddressShippingService addressShippingService,
+            GhnConfig ghnConfig) {
         this.cartService = cartService;
         this.billService = billService;
         this.discountCodeService = discountCodeService;
         this.addressShippingService = addressShippingService;
+        this.ghnConfig = ghnConfig;
     }
 
     @GetMapping("/shoping-cart")
@@ -42,6 +49,8 @@ public class ShoppingCartController {
         model.addAttribute("discountCodes", discountCodeList.getContent());
         model.addAttribute("addressShippings", addressShippingDtos);
         model.addAttribute("carts", cartDtoList);
+        model.addAttribute("mapsApiKey", mapsApiKey);
+        model.addAttribute("ghnEnabled", (ghnConfig.getToken() != null && !ghnConfig.getToken().isEmpty()));
         return "user/shoping-cart";
     }
 
@@ -64,4 +73,3 @@ public class ShoppingCartController {
     }
 
 }
-

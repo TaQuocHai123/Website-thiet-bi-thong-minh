@@ -20,8 +20,11 @@ public class OrderController {
 
     @ResponseBody
     @PostMapping("/api/orderUser")
-    public void order(@RequestBody OrderDto orderDto) {
-        cartService.orderUser(orderDto);
+    public java.util.Map<String, String> order(@RequestBody OrderDto orderDto) {
+        String orderId = cartService.orderUser(orderDto);
+        java.util.Map<String, String> response = new java.util.HashMap<>();
+        response.put("orderId", orderId == null ? "" : orderId);
+        return response;
     }
 
     @ResponseBody

@@ -38,6 +38,13 @@ public class Bill implements Serializable {
     private String billingAddress;
 
     private Double amount;
+    // Shipping-related fields
+    private Double shippingFee;
+    private Double shippingLatitude;
+    private Double shippingLongitude;
+    private Integer shippingProvinceId;
+    private Integer shippingDistrictId;
+    private String shippingWardCode;
 
     private Boolean returnStatus;
 
