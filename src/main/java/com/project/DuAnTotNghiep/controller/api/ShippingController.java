@@ -38,27 +38,10 @@ public class ShippingController {
             @RequestParam(required = false) Integer weight) {
         Map<String, Object> res = new HashMap<>();
 
-        // If districtId is 0 or null but wardCode is provided, try to resolve districtId from cache
-        Integer resolvedDistrictId = districtId;
-        if ((resolvedDistrictId == null || resolvedDistrictId == 0) && wardCode != null) {
-            System.out.println("Attempting to resolve districtId from wardCode: " + wardCode);
-            List<java.util.Map<String, Object>> wards = masterDataCacheService.getAllWardsFromCache();
-            if (wards != null && !wards.isEmpty()) {
-                for (java.util.Map<String, Object> w : wards) {
-                    String wcode = extractString(w, "WardCode", "Code", "code", "ward_code");
-                    if (wardCode.equals(wcode)) {
-                        resolvedDistrictId = extractInt(w, "DistrictID", "district_id", "DistrictId");
-                        System.out.println("Resolved wardCode " + wardCode + " to districtId: " + resolvedDistrictId);
-                        break;
-                    }
-                }
-            }
-        }
-
-        // Try GHN API if district+ward provided (after resolution)
-        if (resolvedDistrictId != null && resolvedDistrictId > 0 && wardCode != null) {
+        // Try GHN API if district+ward provided
+        if (districtId != null && wardCode != null) {
             try {
-                Map<String, Object> ghnResult = ghnService.calculateFee(resolvedDistrictId, wardCode,
+                Map<String, Object> ghnResult = ghnService.calculateFee(districtId, wardCode,
                         weight == null ? 1000 : weight);
                 if (ghnResult != null && ghnResult.get("fee") != null) {
                     Double fee = ((Number) ghnResult.get("fee")).doubleValue();
@@ -75,10 +58,9 @@ public class ShippingController {
 
             // GHN failed → use local zone-based pricing by districtId
             Double fee = ((com.project.DuAnTotNghiep.service.serviceImpl.ShippingServiceImpl) shippingService)
-                    .calculateShippingFeeByDistrict(resolvedDistrictId);
+                    .calculateShippingFeeByDistrict(districtId);
             res.put("fee", fee);
             res.put("provider", "LOCAL_ZONE");
-            System.out.println("Using LOCAL_ZONE pricing for districtId: " + resolvedDistrictId + " → fee: " + fee);
             return ResponseEntity.ok(res);
         }
 

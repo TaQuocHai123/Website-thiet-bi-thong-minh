@@ -238,21 +238,21 @@
                                     <div id="address-select-group" style="display: none">
                                         <div class="bor8 bg0 m-b-12">
                                             <select class="form-control" name="province" id="province"
-                                                style="width: 100% !important; padding: 10px !important; border: 1px solid #ccc !important; border-radius: 4px !important; background-color: #fff !important; color: #000 !important; font-size: 14px !important;">
+                                                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                                                 <option value="">-- Chọn tỉnh --</option>
                                             </select>
                                         </div>
 
                                         <div class="bor8 bg0 m-b-12">
                                             <select class="form-control" name="district" id="district"
-                                                style="width: 100% !important; padding: 10px !important; border: 1px solid #ccc !important; border-radius: 4px !important; background-color: #fff !important; color: #000 !important; font-size: 14px !important;">
+                                                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                                                 <option value="">-- Chọn quận, huyện --</option>
                                             </select>
                                         </div>
 
                                         <div class="bor8 bg0 m-b-12">
                                             <select class="form-control" name="ward" id="ward"
-                                                style="width: 100% !important; padding: 10px !important; border: 1px solid #ccc !important; border-radius: 4px !important; background-color: #fff !important; color: #000 !important; font-size: 14px !important;">
+                                                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                                                 <option value="">-- Chọn phường, xã --</option>
                                             </select>
                                         </div>
@@ -403,6 +403,22 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script th:inline="javascript">
             $(document).ready(function () {
+                // Ensure header cart badge reflects server-rendered cart on this page
+                try {
+                    var serverCartCount = /*[[${carts.size()}]]*/ 0;
+                    if (serverCartCount && parseInt(serverCartCount) > 0) {
+                        $('.js-show-cart').attr('data-notify', serverCartCount);
+                        localStorage.setItem('cartQuantity', serverCartCount.toString());
+                    } else {
+                        // if no server cart items, keep any existing localStorage value
+                        var stored = localStorage.getItem('cartQuantity');
+                        if (stored && parseInt(stored) > 0) {
+                            $('.js-show-cart').attr('data-notify', stored);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Failed to set header cart from server value', e);
+                }
                 var voucherList = /*[[${discountCodes}]]*/ ''
                 var voucherChoosed;
                 var shippingFee = 0;
@@ -939,10 +955,11 @@
                     if (paymentMethodId == 3) {
                         const amount = removeAnyNonDigit($('#all-total').text())
                         // INIT PAYMENT
+                        const orderPayloadStr = JSON.stringify(dataSend);
                         await $.ajax({
                             type: 'POST',
                             dataTye: 'json',
-                            url: `/api/payment?amount=${amount}`,
+                            url: `/api/payment?amount=${amount}&orderPayload=${encodeURIComponent(orderPayloadStr)}`,
                             success: function (data) {
                                 sessionStorage.setItem("orderTemp", JSON.stringify(dataSend))
                                 window.location.href = data.url

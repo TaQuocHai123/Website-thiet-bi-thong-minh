@@ -99,6 +99,10 @@
 
             if (paymentSuccess) {
                 try { sessionStorage.removeItem('orderTemp'); } catch (e) { }
+                // Redirect to order management page after 2 seconds
+                setTimeout(function () {
+                    window.location.href = '/cart-status';
+                }, 2000);
             }
 
             $(document).ready(function () {

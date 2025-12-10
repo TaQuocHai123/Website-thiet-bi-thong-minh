@@ -157,12 +157,4 @@ public class MasterDataCacheService {
         }
         return out;
     }
-
-    public List<Map<String, Object>> getAllWardsFromCache() {
-        Map<String, Object> m = loadCache();
-        Object o = m.get("wards");
-        if (o instanceof List)
-            return (List<Map<String, Object>>) o;
-        return Collections.emptyList();
-    }
 }

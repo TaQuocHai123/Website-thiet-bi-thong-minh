@@ -135,7 +135,7 @@
 <nav class="" style="background-color: #0964CF; padding: 0 14px">
     <div class="d-flex align-items-center">
         <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Thêm sản phẩm vào đơn" aria-label="Search">
+            <input id="productSearchInput" class="form-control mr-sm-2" type="search" placeholder="Thêm sản phẩm vào đơn" aria-label="Search">
         </form>
         <a class="fs-5 text-white" th:href="@{/admin}"><i class="fa fa-home" aria-hidden="true"></i></a>
         <div class="tab-container">
@@ -361,6 +361,34 @@
         const addTabBtn = document.querySelector(".add-tab-btn");
         var tabActiveNumber = 1
         var posProducts = document.querySelectorAll('.pos-product')
+
+        // ====== Product search filter ======
+        const productSearchInput = document.getElementById('productSearchInput');
+        function debounce(fn, delay) {
+            let timer;
+            return function (...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => fn.apply(this, args), delay);
+            };
+        }
+
+        function filterProducts() {
+            if (!productSearchInput) return;
+            const q = productSearchInput.value.trim().toLowerCase();
+            document.querySelectorAll('.pos-product').forEach(p => {
+                const nameEl = p.querySelector('.product-name');
+                const text = nameEl ? nameEl.textContent.toLowerCase() : '';
+                if (q === '' || text.indexOf(q) !== -1) {
+                    p.style.display = '';
+                } else {
+                    p.style.display = 'none';
+                }
+            });
+        }
+
+        if (productSearchInput) {
+            productSearchInput.addEventListener('input', debounce(filterProducts, 180));
+        }
 
         document.addEventListener("DOMContentLoaded", () => {
 

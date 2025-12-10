@@ -28,21 +28,24 @@ public class ShippingServiceImpl implements ShippingService {
     }
 
     private static void initializeDistrictZoneMap() {
-        // HCM inner city districts (from GHN: 1442-1463, 3695)
-        Integer[] hcmInner = { 1442, 1443, 1444, 1446, 1447, 1448, 1449, 1450, 1451, 1452, 1453, 1454, 1455, 1456, 
-                1457, 1458, 1459, 1461, 1462, 1463, 3695 };
+        // HCM inner city districts
+        Integer[] hcmInner = { 1458, 1459, 1460, 1461, 1462, 1463, 1464, 1465, 1466, 1467, 1468, 3440, 3441, 3442, 3443,
+                3695 };
         for (Integer did : hcmInner) {
             districtZoneMap.put(did, "NOI_TINH_HCM");
         }
 
-        // HCM outer + nearby provinces (from GHN: 1460, 1533, 1534, 2090)
-        Integer[] hcmOuterAndNearby = { 1460, 1533, 1534, 2090 };
+        // HCM outer + nearby provinces
+        Integer[] hcmOuterAndNearby = { 1533, 1534, 2090, 3242, 3243, 3244, 3245, 3246, 3247, 3248, 3249, 3250 };
         for (Integer did : hcmOuterAndNearby) {
             districtZoneMap.put(did, "NOI_VUNG");
         }
 
-        // Hanoi inner districts (add actual Hanoi districts if available in future)
-        // For now, using coordinate-based determination
+        // Hanoi inner districts
+        Integer[] hanoiInner = { 3440, 3441, 3442, 3443, 3444, 3445, 3446, 3447, 3448 };
+        for (Integer did : hanoiInner) {
+            districtZoneMap.put(did, "NOI_TINH_HANOI");
+        }
     }
 
     /**

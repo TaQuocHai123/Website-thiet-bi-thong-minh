@@ -58,25 +58,28 @@ public class PaymentRestController {
         // Enrich the order payload with accountId (if user is authenticated) and
         // assigned orderId
         try {
+            com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+            java.util.Map<String, Object> payloadMap = new java.util.HashMap<>();
+
             if (orderPayload != null && !orderPayload.isEmpty()) {
-                com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
-                java.util.Map<String, Object> payloadMap = mapper.readValue(orderPayload, java.util.Map.class);
-                // If user is logged in, attach account id to make server-side order creation
-                // possible on notify
-                try {
-                    com.project.DuAnTotNghiep.entity.Account current = com.project.DuAnTotNghiep.utils.UserLoginUtil
-                            .getCurrentLogin();
-                    if (current != null && current.getId() != null)
-                        payloadMap.put("accountId", current.getId());
-                } catch (Exception ignored) {
-                }
-                // Add the generated txnRef so orderUserFromPayload can reference it
-                payloadMap.put("orderId", vnp_TxnRef);
-                // Remove empty string values for numeric fields to prevent deserialization
-                // errors later
-                com.project.DuAnTotNghiep.utils.JsonPayloadUtils.sanitizeEmptyStringsInMap(payloadMap);
-                orderPayload = mapper.writeValueAsString(payloadMap);
+                payloadMap = mapper.readValue(orderPayload, java.util.Map.class);
             }
+
+            // If user is logged in, attach account id to make server-side order creation
+            // possible on notify
+            try {
+                com.project.DuAnTotNghiep.entity.Account current = com.project.DuAnTotNghiep.utils.UserLoginUtil
+                        .getCurrentLogin();
+                if (current != null && current.getId() != null)
+                    payloadMap.put("accountId", current.getId());
+            } catch (Exception ignored) {
+            }
+            // Add the generated txnRef so orderUserFromPayload can reference it
+            payloadMap.put("orderId", vnp_TxnRef);
+            // Remove empty string values for numeric fields to prevent deserialization
+            // errors later
+            com.project.DuAnTotNghiep.utils.JsonPayloadUtils.sanitizeEmptyStringsInMap(payloadMap);
+            orderPayload = mapper.writeValueAsString(payloadMap);
         } catch (Exception ignored) {
         }
 
