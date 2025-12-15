@@ -141,7 +141,7 @@ public class ProductController {
         productDetails.add(new ProductDetail());
         createProductDetailsForm.setProductDetailList(productDetails);
         model.addAttribute("form", createProductDetailsForm);
-        return "/admin/product-create-detail";
+        return "admin/product-create-detail";
     }
 
     @PostMapping("/product-save")
@@ -185,7 +185,7 @@ public class ProductController {
     public String viewEditProduct(Model model, @PathVariable Long productId) {
         Product product = productService.getProductById(productId).orElse(null);
         if (product == null) {
-            return "/error/404";
+            return "error/404";
         }
         if (product.getBrand() == null)
             product.setBrand(new Brand());
@@ -231,7 +231,7 @@ public class ProductController {
         createProductDetailsForm.setProductDetailList(productDetails);
         model.addAttribute("listImages", product.getImage());
         model.addAttribute("form", createProductDetailsForm);
-        return "/admin/product-edit-detail";
+        return "admin/product-edit-detail";
     }
 
     @PostMapping("/product-save-edit")

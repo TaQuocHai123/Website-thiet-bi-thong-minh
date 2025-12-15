@@ -24,7 +24,7 @@ public class AccountMngController {
     public String viewAccountManagementPage(Model model) {
         List<Account> accountList = accountService.findAllAccount();
         model.addAttribute("accountList", accountList);
-        return "/admin/account";
+        return "admin/account";
     }
 
     @PostMapping("/account/block/{id}")

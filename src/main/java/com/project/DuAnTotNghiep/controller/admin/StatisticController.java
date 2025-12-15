@@ -92,13 +92,13 @@ public class StatisticController {
         model.addAttribute("percentageLastMonth", percentageLastMonth);
         model.addAttribute("bestSellers", statisticService.getBestSellerProductAll());
 
-        return "/admin/thong-ke-doanh-thu";
+        return "admin/thong-ke-doanh-thu";
     }
 
     @GetMapping("/admin/thong-ke-san-pham")
     public String viewStatisticProductPage(Model model) {
 
-        return "/admin/thong-ke-san-pham";
+        return "admin/thong-ke-san-pham";
     }
 
     private double calculatePercentage(double baseValue, double comparedValue) {

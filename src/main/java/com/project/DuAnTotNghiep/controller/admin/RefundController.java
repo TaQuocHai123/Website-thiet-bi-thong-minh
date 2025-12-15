@@ -28,7 +28,7 @@ public class RefundController {
     @GetMapping("/admin-only/need-refund-mng")
     public String viewRefundPage(SearchRefundDto searchRefundDto, Model model) {
         model.addAttribute("refundList", billRepository.findListNeedRefund());
-        return "/admin/refund-mng";
+        return "admin/refund-mng";
     }
 
     @PostMapping("/admin/confirm-refund/{id}")

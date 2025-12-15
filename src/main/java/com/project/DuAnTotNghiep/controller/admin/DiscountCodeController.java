@@ -36,7 +36,7 @@ public class DiscountCodeController {
         model.addAttribute("dataSearch", searchDiscountCodeDto);
         model.addAttribute("totalPage", discountCodes.getTotalPages());
         model.addAttribute("currentPage", pageable.getPageNumber());
-        return "/admin/discount-code";
+        return "admin/discount-code";
     }
 
     @GetMapping("/admin-only/discount-code-create")
@@ -55,7 +55,7 @@ public class DiscountCodeController {
 
         model.addAttribute("DiscountCode", discountCodeDto);
         model.addAttribute("action", "/admin/discount-code-save");
-        return "/admin/discount-code-create";
+        return "admin/discount-code-create";
     }
 
     @GetMapping("/admin-only/discount-code/edit/{id}")

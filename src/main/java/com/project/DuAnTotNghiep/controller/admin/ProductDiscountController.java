@@ -39,14 +39,14 @@ public class ProductDiscountController {
     public String viewProductDiscountPage(Model model, Pageable pageable) {
         List<ProductDiscount> productDiscountList = productDiscountRepository.findAll();
         model.addAttribute("productDiscounts", productDiscountList);
-        return "/admin/product-discount";
+        return "admin/product-discount";
     }
 
     @GetMapping("/admin-only/product-discount-create")
     public String viewProductDiscountCreatePage(Model model) {
         List<Category> categories = categoryService.getAll();
         model.addAttribute("categories", categories);
-        return "/admin/product-discount-create";
+        return "admin/product-discount-create";
     }
 
     @ResponseBody

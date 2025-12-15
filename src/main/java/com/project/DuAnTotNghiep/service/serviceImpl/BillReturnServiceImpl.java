@@ -13,6 +13,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class BillReturnServiceImpl implements BillReturnService {
+
+    private static final Logger logger = LoggerFactory.getLogger(BillReturnServiceImpl.class);
 
     private final BillReturnRepository billReturnRepository;
     private final BillRepository billRepository;
@@ -50,6 +54,12 @@ public class BillReturnServiceImpl implements BillReturnService {
     @Override
     @Transactional(rollbackOn = Exception.class)
     public BillReturnDto createBillReturn(BillReturnCreateDto billReturnCreateDto) {
+        logger.info("createBillReturn called with billId={} percent={} refundDtos={} returnDtos={}",
+            billReturnCreateDto == null ? null : billReturnCreateDto.getBillId(),
+            billReturnCreateDto == null ? null : billReturnCreateDto.getPercent(),
+            billReturnCreateDto == null || billReturnCreateDto.getRefundDtos() == null ? 0 : billReturnCreateDto.getRefundDtos().size(),
+            billReturnCreateDto == null || billReturnCreateDto.getReturnDtos() == null ? 0 : billReturnCreateDto.getReturnDtos().size());
+
         BillReturn billReturnLast = billReturnRepository.findTopByOrderByIdDesc();
         int nextCode = (billReturnLast == null) ? 1 : Integer.parseInt(billReturnLast.getCode().substring(2)) + 1;
         String billReturnCode = "DT" + String.format("%03d", nextCode);
@@ -59,6 +69,13 @@ public class BillReturnServiceImpl implements BillReturnService {
         billReturn.setReturnReason(billReturnCreateDto.getReason());
         billReturn.setReturnDate(LocalDateTime.now());
         billReturn.setCancel(false);
+
+        // persist percent fee for exchange/refund if provided
+        if (billReturnCreateDto.getPercent() != null) {
+            billReturn.setPercentFeeExchange(billReturnCreateDto.getPercent());
+        } else {
+            billReturn.setPercentFeeExchange(0);
+        }
 
         Bill bill = billRepository.findById(billReturnCreateDto.getBillId()).orElseThrow(() -> new NotFoundException("Bill not found"));
         if(bill.getStatus() == BillStatus.TRA_HANG) {
@@ -70,10 +87,74 @@ public class BillReturnServiceImpl implements BillReturnService {
 
         billReturn.setBill(bill);
 
-        // Đơn giản hóa xử lý: chỉ lưu thông tin đổi trả cơ bản
-        billReturn.setReturnStatus(0); // trạng thái khởi tạo
-        billReturn.setReturnMoney(0.0); // chưa xử lý tiền
+        // Persist billReturn early so ReturnDetail entries can reference it
         billReturnRepository.save(billReturn);
+
+        // Process refund and return items from DTO
+        double totalRefund = 0.0;   // sum of refund items (money to be returned for refunded products)
+        double totalExchange = 0.0; // sum of exchange items (money of items customer will receive)
+
+        // Handle refunds (items returned for money)
+        if (billReturnCreateDto.getRefundDtos() != null) {
+            for (RefundCreateDto r : billReturnCreateDto.getRefundDtos()) {
+                if (r == null || r.getBillDetailId() == null || r.getQuantityRefund() == null)
+                    continue;
+                BillDetail billDetail = billDetailRepository.findById(r.getBillDetailId())
+                        .orElseThrow(() -> new NotFoundException("Bill detail not found: " + r.getBillDetailId()));
+
+                int qty = r.getQuantityRefund();
+                double price = billDetail.getMomentPrice() != null ? billDetail.getMomentPrice() : 0.0;
+
+                // update return quantity on bill detail
+                Integer existingReturnQty = billDetail.getReturnQuantity() == null ? 0 : billDetail.getReturnQuantity();
+                billDetail.setReturnQuantity(existingReturnQty + qty);
+                billDetailRepository.save(billDetail);
+
+                // create a ReturnDetail record to represent this refunded item
+                ReturnDetail rd = new ReturnDetail();
+                rd.setBillReturn(billReturn);
+                rd.setProductDetail(billDetail.getProductDetail());
+                rd.setQuantityReturn(qty);
+                rd.setMomentPriceRefund(price);
+                returnDetailRepository.save(rd);
+
+                totalRefund += price * qty;
+            }
+        }
+
+        // Handle exchanges / return-to-other-product (items customer will receive)
+        if (billReturnCreateDto.getReturnDtos() != null) {
+            for (ReturnCreateDto rt : billReturnCreateDto.getReturnDtos()) {
+                if (rt == null || rt.getProductDetailId() == null || rt.getQuantityReturn() == null)
+                    continue;
+                ProductDetail productDetail = productDetailRepository.findById(rt.getProductDetailId())
+                        .orElseThrow(() -> new NotFoundException("Product detail not found: " + rt.getProductDetailId()));
+
+                int qty = rt.getQuantityReturn();
+                double price = productDetail.getPrice();
+
+                ReturnDetail rd = new ReturnDetail();
+                rd.setBillReturn(billReturn);
+                rd.setProductDetail(productDetail);
+                rd.setQuantityReturn(qty);
+                rd.setMomentPriceRefund(price);
+                returnDetailRepository.save(rd);
+
+                totalExchange += price * qty;
+            }
+        }
+
+        // Calculate fee (percent applied on refund total) and final money to return to customer
+        int percent = billReturn.getPercentFeeExchange() == null ? 0 : billReturn.getPercentFeeExchange();
+        double fee = Math.round(totalRefund * percent / 100.0);
+        double moneyToCustomer = totalRefund - fee - totalExchange;
+        if (moneyToCustomer < 0) moneyToCustomer = 0;
+
+        billReturn.setReturnStatus(0); // trạng thái khởi tạo
+        billReturn.setReturnMoney(moneyToCustomer);
+        // Save again to persist computed money and any relations
+        billReturnRepository.save(billReturn);
+
         return convertToDto(billReturn);
     }
 
